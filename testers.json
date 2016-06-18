@@ -497,6 +497,7 @@
   "built-in extensions›Array.prototype methods›Array.prototype[Symbol.iterator]": "return typeof Array.prototype[Symbol.iterator] === 'function';",
   "built-in extensions›Array.prototype methods›Array iterator prototype chain": "// Iterator instance\nvar iterator = [][Symbol.iterator]();\n// %ArrayIteratorPrototype%\nvar proto1 = Object.getPrototypeOf(iterator);\n// %IteratorPrototype%\nvar proto2 = Object.getPrototypeOf(proto1);\n\nreturn proto2.hasOwnProperty(Symbol.iterator) &&\n  !proto1    .hasOwnProperty(Symbol.iterator) &&\n  !iterator  .hasOwnProperty(Symbol.iterator) &&\n  iterator[Symbol.iterator]() === iterator;",
   "built-in extensions›Array.prototype methods›Array.prototype[Symbol.unscopables]": "var unscopables = Array.prototype[Symbol.unscopables];\nif (!unscopables) {\n  return false;\n}\nvar ns = \"find,findIndex,fill,copyWithin,entries,keys,values\".split(\",\");\nfor (var i = 0; i < ns.length; i++) {\n  if (Array.prototype[ns[i]] && !unscopables[ns[i]]) return false;\n}\nreturn true;",
+  "built-in extensions›Array.prototype methods›Array.prototype.includes": "return typeof Array.prototype.includes === 'function';",
   "built-in extensions›Number properties›Number.isFinite": "return typeof Number.isFinite === 'function';",
   "built-in extensions›Number properties›Number.isInteger": "return typeof Number.isInteger === 'function';",
   "built-in extensions›Number properties›Number.isSafeInteger": "return typeof Number.isSafeInteger === 'function';",
