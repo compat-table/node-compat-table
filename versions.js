@@ -35,8 +35,8 @@ function filter (published) {
   add(max('4'))
   add(max(`>4.0.0 <${last()}`))
   add(max('4.3')) // special case for AWS Lambda
-  add(max('0.12'))
-  add(max('0.10'))
+  // add(max('0.12'))
+  // add(max('0.10'))
 
   console.log(desired.join('\n'))
 }
