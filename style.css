@@ -86,7 +86,7 @@ body.scrolled .headings {
   top: -2px;
 }
 .version sup {
-  color: gold;
+  color: #f2e646;
   position: absolute;
   top: -15px;
   left: 0;
@@ -191,14 +191,14 @@ article > header > h1 a:hover {
   min-width: 65px;
 }
 .version {
-  cursor: pointer;
+  cursor: help;
   font-size: 16px;
   padding: 3px 0;
   color: white;
   position: relative;
   vertical-align: top;
   line-height: 16px;
-  background-color: #5b5bef;
+  background-color: #075c8d;
 }
 .details {
   padding: 6px;
@@ -208,7 +208,7 @@ article > header > h1 a:hover {
   right: 0;
   font-weight: normal;
   background-color: #454545;
-  color: #aaa;
+  color: #eee;
   width: 240px;
   border-radius: 9px;
 }
@@ -240,27 +240,28 @@ sub {
 }
 .subsub {
   text-indent: 10px;
-  color: #aaa
+  color: #555;
 }
 
 .Yes.flagged.required:before {
   content: '⚐';
   position: absolute;
   margin-left: 26px;
-  color: #666;
+  color: #444;
 }
 .Yes.flagged.required {
-  background-color: gold;
-  color: #666;
+  background-color: #f2e646;
+  color: #444;
 }
 .Yes {
-  background-color: #026e00;
+  background-color: #00aD7f;
+  color: black;
 }
 .No {
-  background-color: red;
+  background-color: #8e411a;
 }
 .Error {
-  background-color: #dd0000;
+  background-color: #8e411a;
 }
 
 .fn {
@@ -283,7 +284,7 @@ sub {
 .info {
   border-radius: 9px;
   background-color: #eee;
-  color: #aaa;
+  color: #444;
   float: right;
   text-align: center;
   font-size: 12px;
@@ -291,7 +292,7 @@ sub {
   height: 18px;
   text-indent: 0;
   line-height: 18px;
-  cursor: pointer;
+  cursor: help;
 }
 .info:hover .fn {
   display: inline-block;
