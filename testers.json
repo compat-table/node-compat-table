@@ -3153,6 +3153,10 @@
       "spec": "https://github.com/tc39/proposal-regexp-unicode-property-escapes",
       "code": "return /\\p{Unified_Ideograph}/u.test(\"\\u{2ebf0}\");"
     },
+    "features›RegExp Unicode Property Escapes›Unicode 16.0": {
+      "spec": "https://github.com/tc39/proposal-regexp-unicode-property-escapes",
+      "code": "return /\\p{Script=Todhri}/u.test(\"\\u{105c0}\") && /\\p{Emoji}/u.test(\"🫩\");"
+    },
     "features›Asynchronous Iterators›async generators": {
       "spec": "https://github.com/tc39/proposal-async-iteration",
       "code": "async function*generator(){\n  yield 42;\n}\n\nvar iterator = generator();\niterator.next().then(function(step){\n  if(iterator[Symbol.asyncIterator]() === iterator && step.done === false && step.value === 42)asyncTestPassed();\n});"
@@ -3632,6 +3636,10 @@
     "features›RegExp `v` flag›Unicode 15.1": {
       "spec": "https://github.com/tc39/proposal-regexp-v-flag",
       "code": "return /^\\p{RGI_Emoji}$/v.test(\"🐦‍🔥\");"
+    },
+    "features›RegExp `v` flag›Unicode 16.0": {
+      "spec": "https://github.com/tc39/proposal-regexp-v-flag",
+      "code": "return /^\\p{RGI_Emoji}$/v.test(\"🇨🇶\");"
     },
     "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.transfer()": {
       "spec": "https://github.com/tc39/proposal-arraybuffer-transfer",
