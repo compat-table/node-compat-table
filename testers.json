@@ -3645,9 +3645,13 @@
       "spec": "https://github.com/tc39/proposal-arraybuffer-transfer",
       "code": "const buffer1 = new Uint8Array([1, 2]).buffer;\nconst buffer2 = buffer1.transfer();\nreturn buffer1.byteLength === 0\n  && buffer2.byteLength === 2;"
     },
-    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.realloc()": {
+    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.transferToFixedLength()": {
       "spec": "https://github.com/tc39/proposal-arraybuffer-transfer",
-      "code": "const buffer1 = new ArrayBuffer(1024);\nconst buffer2 = buffer1.realloc(256);\nreturn buffer1.byteLength === 0\n  && buffer2.byteLength === 256;"
+      "code": "const buffer1 = new Uint8Array([1, 2]).buffer;\nconst buffer2 = buffer1.transferToFixedLength();\nreturn buffer1.byteLength === 0\n  && buffer2.byteLength === 2;"
+    },
+    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.detached": {
+      "spec": "https://github.com/tc39/proposal-arraybuffer-transfer",
+      "code": "const buffer1 = new Uint8Array([1, 2]).buffer;\nconst buffer2 = buffer1.transfer();\nreturn buffer1.detached && !buffer2.detached;"
     }
   },
   "ES2025": {

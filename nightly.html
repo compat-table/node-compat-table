@@ -27926,13 +27926,13 @@ return buffer1.byteLength === 0
         </tr>
         <tr>
           <td class="feature subsub">
-            <div class="hash" id="ES2024-features-ArrayBuffer-prototype-transfer-ArrayBuffer-prototype-realloc--"></div><a class="anchor" href="#ES2024-features-ArrayBuffer-prototype-transfer-ArrayBuffer-prototype-realloc--">§</a><a href="https://github.com/tc39/proposal-arraybuffer-transfer">ArrayBuffer.prototype.realloc()</a>
+            <div class="hash" id="ES2024-features-ArrayBuffer-prototype-transfer-ArrayBuffer-prototype-transferToFixedLength--"></div><a class="anchor" href="#ES2024-features-ArrayBuffer-prototype-transfer-ArrayBuffer-prototype-transferToFixedLength--">§</a><a href="https://github.com/tc39/proposal-arraybuffer-transfer">ArrayBuffer.prototype.transferToFixedLength()</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">const buffer1 = new ArrayBuffer(1024);
-const buffer2 = buffer1.realloc(256);
+                <div class="code">const buffer1 = new Uint8Array([1, 2]).buffer;
+const buffer2 = buffer1.transferToFixedLength();
 return buffer1.byteLength === 0
-  &amp;&amp; buffer2.byteLength === 256;</div>}
+  &amp;&amp; buffer2.byteLength === 2;</div>}
               </div>
             </div>
           </td>
@@ -27943,10 +27943,34 @@ return buffer1.byteLength === 0
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">const buffer1 = new ArrayBuffer(1024);
-const buffer2 = buffer1.realloc(256);
+              <div class="code">const buffer1 = new Uint8Array([1, 2]).buffer;
+const buffer2 = buffer1.transferToFixedLength();
 return buffer1.byteLength === 0
-  &amp;&amp; buffer2.byteLength === 256;</div>}
+  &amp;&amp; buffer2.byteLength === 2;</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ES2024-features-ArrayBuffer-prototype-transfer-ArrayBuffer-prototype-detached"></div><a class="anchor" href="#ES2024-features-ArrayBuffer-prototype-transfer-ArrayBuffer-prototype-detached">§</a><a href="https://github.com/tc39/proposal-arraybuffer-transfer">ArrayBuffer.prototype.detached</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const buffer1 = new Uint8Array([1, 2]).buffer;
+const buffer2 = buffer1.transfer();
+return buffer1.detached &amp;&amp; !buffer2.detached;</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const buffer1 = new Uint8Array([1, 2]).buffer;
+const buffer2 = buffer1.transfer();
+return buffer1.detached &amp;&amp; !buffer2.detached;</div>}
             </div>
           </td>
         </tr>

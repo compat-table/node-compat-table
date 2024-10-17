@@ -74,7 +74,7 @@
   },
   "ES2024": {
     "_successful": 0,
-    "_count": 8,
+    "_count": 9,
     "_percent": 0,
     "features›RegExp `v` flag›set notations": "Invalid regular expression flags",
     "features›RegExp `v` flag›properties of Strings": "Invalid regular expression flags",
@@ -83,7 +83,8 @@
     "features›RegExp `v` flag›Unicode 15.1": "Invalid regular expression flags",
     "features›RegExp `v` flag›Unicode 16.0": "Invalid regular expression flags",
     "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.transfer()": "buffer1.transfer is not a function",
-    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.realloc()": "buffer1.realloc is not a function"
+    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.transferToFixedLength()": "buffer1.transferToFixedLength is not a function",
+    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.detached": "buffer1.transfer is not a function"
   },
   "ES2023": {
     "_successful": 0,

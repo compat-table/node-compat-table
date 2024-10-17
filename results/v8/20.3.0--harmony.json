@@ -73,9 +73,9 @@
     "features›Iterator Helpers›Iterator.prototype[@@toStringTag]": "Iterator is not defined"
   },
   "ES2024": {
-    "_successful": 5,
-    "_count": 8,
-    "_percent": 0.625,
+    "_successful": 7,
+    "_count": 9,
+    "_percent": 0.7777777777777778,
     "features›RegExp `v` flag›set notations": true,
     "features›RegExp `v` flag›properties of Strings": true,
     "features›RegExp `v` flag›constructor supports it": true,
@@ -83,7 +83,8 @@
     "features›RegExp `v` flag›Unicode 15.1": false,
     "features›RegExp `v` flag›Unicode 16.0": false,
     "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.transfer()": true,
-    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.realloc()": "buffer1.realloc is not a function"
+    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.transferToFixedLength()": true,
+    "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.detached": true
   },
   "ES2023": {
     "_successful": 10,
