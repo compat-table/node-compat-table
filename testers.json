@@ -2800,35 +2800,35 @@
     },
     "features›exponentiation (**) operator›early syntax error for unary negation without parens": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-exp-operator",
-      "code": "if (2 ** 3 !== 8) { return false; }\ntry {\nFunction(\"-5 ** 2\")();\n} catch(e) {\nreturn true;\n}"
+      "code": "if (2 ** 3 !== 8) { return false; }\ntry {\n  function (\"-5 ** 2\")();\n} catch (e) {\n  return true;\n}"
     },
     "features›Array.prototype.includes›Array.prototype.includes": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-array.prototype.includes",
-      "code": "return [1, 2, 3].includes(1)\n&& ![1, 2, 3].includes(4)\n&& ![1, 2, 3].includes(1, 1)\n&& [NaN].includes(NaN);"
+      "code": "return [1, 2, 3].includes(1)\n  && ![1, 2, 3].includes(4)\n  && ![1, 2, 3].includes(1, 1)\n  && [NaN].includes(NaN);"
     },
     "features›Array.prototype.includes›Array.prototype.includes handles sparse arrays": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-array.prototype.includes",
-      "code": "return [,].includes()\n && Array(1).includes();"
+      "code": "return [,].includes()\n  && Array(1).includes();"
     },
     "features›Array.prototype.includes›Array.prototype.includes is generic": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-array.prototype.includes",
-      "code": "var passed = 0;\nreturn [].includes.call({\nget \"0\"() {\npassed = NaN;\nreturn 'foo';\n},\nget \"11\"() {\npassed += 1;\nreturn 0;\n},\nget \"19\"() {\npassed += 1;\nreturn 'foo';\n},\nget \"21\"() {\npassed = NaN;\nreturn 'foo';\n},\nget length() {\npassed += 1;\nreturn 24;\n}\n}, 'foo', 6) === true && passed === 3;"
+      "code": "var passed = 0;\nreturn [].includes.call(\n  {\n    get \"0\"() {\n      passed = NaN;\n      return 'foo';\n    },\n    get \"11\"() {\n      passed += 1;\n      return 0;\n    },\n    get \"19\"() {\n      passed += 1;\n      return 'foo';\n    },\n    get \"21\"() {\n      passed = NaN;\n      return 'foo';\n    },\n    get length() {\n      passed += 1;\n      return 24;\n    }\n  },\n  'foo',\n  6\n) === true && passed === 3;"
     },
     "features›Array.prototype.includes›%TypedArray%.prototype.includes": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-array.prototype.includes",
-      "code": "return [Int8Array, Uint8Array, Uint8ClampedArray, Int16Array, Uint16Array,\nInt32Array, Uint32Array, Float32Array, Float64Array].every(function(TypedArray){\nreturn new TypedArray([1, 2, 3]).includes(1)\n&& !new TypedArray([1, 2, 3]).includes(4)\n&& !new TypedArray([1, 2, 3]).includes(1, 1);\n});"
+      "code": "return [\n  Int8Array,\n  Uint8Array,\n  Uint8ClampedArray,\n  Int16Array,\n  Uint16Array,\n  Int32Array,\n  Uint32Array,\n  Float32Array,\n  Float64Array\n].every(function (TypedArray) {\n  return new TypedArray([1, 2, 3]).includes(1)\n  && !new TypedArray([1, 2, 3]).includes(4)\n  && !new TypedArray([1, 2, 3]).includes(1, 1);\n});"
     },
     "misc›generator functions can't be used with \"new\"": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-createdynamicfunction",
-      "code": "function * generator() {\nyield 3;\n}\ntry {\nnew generator();\n} catch(e) {\nreturn true;\n}"
+      "code": "function * generator() {\n  yield 3;\n}\ntry {\n  new generator();\n} catch (e) {\n  return true;\n}"
     },
     "misc›generator throw() caught by inner generator": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-generatorfunction-objects",
-      "code": "function * generator() {\nyield * (function * () {\ntry {\nyield 'foo';\n}\ncatch(e) {\nreturn;\n}\n}());\nyield 'bar';\n}\nvar iter = generator();\niter.next();\nreturn iter['throw']().value === 'bar';"
+      "code": "function * generator() {\n  yield * (function * () {\n    try {\n      yield 'foo';\n    }\n    catch (e) {\n      return;\n    }\n  }());\n  yield 'bar';\n}\nvar iter = generator();\niter.next();\nreturn iter['throw']().value === 'bar';"
     },
     "misc›strict fn w/ non-strict non-simple params is error": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-functiondeclarationinstantiation",
-      "code": "function foo(...a){}\ntry {\nFunction(\"function bar(...a){'use strict';}\")();\n} catch(e) {\nreturn true;\n}"
+      "code": "function foo(...a) {}\ntry {\n  function (\"function bar(...a) {'use strict';}\")();\n} catch (e) {\nreturn true;\n}"
     },
     "misc›nested rest destructuring, declarations": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-destructuring-assignment",
@@ -2836,45 +2836,45 @@
     },
     "misc›nested rest destructuring, parameters": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-destructuring-assignment",
-      "code": "return function([x, ...[y, ...z]]) {\nreturn x === 1 && y === 2 && z + '' === '3,4';\n}([1,2,3,4]);"
+      "code": "return function ([x, ...[y, ...z]]) {\n  return x === 1 && y === 2 && z + '' === '3,4';\n}([1,2,3,4]);"
     },
     "misc›Proxy, \"enumerate\" handler removed": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-proxy-objects",
-      "code": "var passed = true;\nvar proxy = new Proxy({}, {\nenumerate: function() {\npassed = false;\n}\n});\nfor(var key in proxy); // Should not throw, nor execute the 'enumerate' method.\nreturn passed;"
+      "code": "var passed = true;\nvar proxy = new Proxy({}, {\n  enumerate: function () {\n    passed = false;\n  }\n});\nfor (var key in proxy); // Should not throw, nor execute the 'enumerate' method.\nreturn passed;"
     },
     "misc›Proxy internal calls, Array.prototype.includes": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-array.prototype.includes",
-      "code": "// Array.prototype.includes -> Get -> [[Get]]\nvar get = [];\nvar p = new Proxy({length: 3, 0: '', 1: '', 2: '', 3: ''}, { get: function(o, k) { get.push(k); return o[k]; }});\nArray.prototype.includes.call(p, {});\nif (get + '' !== \"length,0,1,2\") return;\n\nget = [];\np = new Proxy({length: 4, 0: NaN, 1: '', 2: NaN, 3: ''}, { get: function(o, k) { get.push(k); return o[k]; }});\nArray.prototype.includes.call(p, NaN, 1);\nreturn (get + '' === \"length,1,2\");"
+      "code": "// Array.prototype.includes -> Get -> [[Get]]\nvar get = [];\nvar p = new Proxy({length: 3, 0: '', 1: '', 2: '', 3: ''}, { get: function (o, k) { get.push(k); return o[k]; }});\nArray.prototype.includes.call(p, {});\nif (get + '' !== \"length,0,1,2\") return;\n\nget = [];\np = new Proxy({length: 4, 0: NaN, 1: '', 2: NaN, 3: ''}, { get: function (o, k) { get.push(k); return o[k]; }});\nArray.prototype.includes.call(p, NaN, 1);\nreturn (get + '' === \"length,1,2\");"
     }
   },
   "ES2017": {
     "features›Object static methods›Object.values": {
       "spec": "https://tc39.github.io/ecma262/#sec-properties-of-the-object-constructor",
-      "code": "var obj = Object.create({ a: \"qux\", d: \"qux\" });\nobj.a = \"foo\"; obj.b = \"bar\"; obj.c = \"baz\";\nvar v = Object.values(obj);\nreturn Array.isArray(v) && String(v) === \"foo,bar,baz\";"
+      "code": "var obj = Object.create({ a: \"qux\", d: \"qux\" });\nobj.a = \"foo\";\nobj.b = \"bar\";\nobj.c = \"baz\";\nvar v = Object.values(obj);\nreturn Array.isArray(v) && String(v) === \"foo,bar,baz\";"
     },
     "features›Object static methods›Object.entries": {
       "spec": "https://tc39.github.io/ecma262/#sec-properties-of-the-object-constructor",
-      "code": "var obj = Object.create({ a: \"qux\", d: \"qux\" });\nobj.a = \"foo\"; obj.b = \"bar\"; obj.c = \"baz\";\nvar e = Object.entries(obj);\nreturn Array.isArray(e)\n&& e.length === 3\n&& String(e[0]) === \"a,foo\"\n&& String(e[1]) === \"b,bar\"\n&& String(e[2]) === \"c,baz\";"
+      "code": "var obj = Object.create({ a: \"qux\", d: \"qux\" });\nobj.a = \"foo\";\nobj.b = \"bar\";\nobj.c = \"baz\";\nvar e = Object.entries(obj);\nreturn Array.isArray(e)\n  && e.length === 3\n  && String(e[0]) === \"a,foo\"\n  && String(e[1]) === \"b,bar\"\n  && String(e[2]) === \"c,baz\";"
     },
     "features›Object static methods›Object.getOwnPropertyDescriptors": {
       "spec": "https://tc39.github.io/ecma262/#sec-properties-of-the-object-constructor",
-      "code": "var object = {a: 1};\nvar B = typeof Symbol === 'function' ? Symbol('b') : 'b';\nobject[B] = 2;\nvar O = Object.defineProperty(object, 'c', {value: 3});\nvar D = Object.getOwnPropertyDescriptors(O);\n\nreturn D.a.value === 1 && D.a.enumerable === true && D.a.configurable === true && D.a.writable === true\n&& D[B].value === 2 && D[B].enumerable === true && D[B].configurable === true && D[B].writable === true\n&& D.c.value === 3 && D.c.enumerable === false && D.c.configurable === false && D.c.writable === false;"
+      "code": "var object = {a: 1};\nvar B = typeof Symbol === 'function' ? Symbol('b') : 'b';\nobject[B] = 2;\nvar O = Object.defineProperty(object, 'c', {value: 3});\nvar D = Object.getOwnPropertyDescriptors(O);\n\nreturn D.a.value === 1 && D.a.enumerable === true && D.a.configurable === true && D.a.writable === true\n  && D[B].value === 2 && D[B].enumerable === true && D[B].configurable === true && D[B].writable === true\n  && D.c.value === 3 && D.c.enumerable === false && D.c.configurable === false && D.c.writable === false;"
     },
     "features›Object static methods›Object.getOwnPropertyDescriptors doesn't provide undefined descriptors": {
       "spec": "https://tc39.github.io/ecma262/#sec-properties-of-the-object-constructor",
-      "code": "var P = new Proxy({a:1}, {\n  getOwnPropertyDescriptor: function(t, k) {}\n});\nreturn !Object.getOwnPropertyDescriptors(P).hasOwnProperty('a');"
+      "code": "var P = new Proxy({ a: 1 }, {\n  getOwnPropertyDescriptor: function (t, k) {}\n});\nreturn !Object.getOwnPropertyDescriptors(P).hasOwnProperty('a');"
     },
     "features›String padding›String.prototype.padStart": {
       "spec": "https://github.com/tc39/proposal-string-pad-start-end",
-      "code": "return 'hello'.padStart(10) === '     hello'\n&& 'hello'.padStart(10, '1234') === '12341hello'\n&& 'hello'.padStart() === 'hello'\n&& 'hello'.padStart(6, '123') === '1hello'\n&& 'hello'.padStart(3) === 'hello'\n&& 'hello'.padStart(3, '123') === 'hello';"
+      "code": "return 'hello'.padStart(10) === '     hello'\n  && 'hello'.padStart(10, '1234') === '12341hello'\n  && 'hello'.padStart() === 'hello'\n  && 'hello'.padStart(6, '123') === '1hello'\n  && 'hello'.padStart(3) === 'hello'\n  && 'hello'.padStart(3, '123') === 'hello';"
     },
     "features›String padding›String.prototype.padEnd": {
       "spec": "https://github.com/tc39/proposal-string-pad-start-end",
-      "code": "return 'hello'.padEnd(10) === 'hello     '\n&& 'hello'.padEnd(10, '1234') === 'hello12341'\n&& 'hello'.padEnd() === 'hello'\n&& 'hello'.padEnd(6, '123') === 'hello1'\n&& 'hello'.padEnd(3) === 'hello'\n&& 'hello'.padEnd(3, '123') === 'hello';"
+      "code": "return 'hello'.padEnd(10) === 'hello     '\n  && 'hello'.padEnd(10, '1234') === 'hello12341'\n  && 'hello'.padEnd() === 'hello'\n  && 'hello'.padEnd(6, '123') === 'hello1'\n  && 'hello'.padEnd(3) === 'hello'\n  && 'hello'.padEnd(3, '123') === 'hello';"
     },
     "features›trailing commas in function syntax›in parameter lists": {
       "spec": "https://github.com/tc39/proposal-trailing-function-commas",
-      "code": "return typeof function f( a, b, ){} === 'function';"
+      "code": "return typeof function f( a, b, ) {} === 'function';"
     },
     "features›trailing commas in function syntax›in argument lists": {
       "spec": "https://github.com/tc39/proposal-trailing-function-commas",
@@ -2882,67 +2882,67 @@
     },
     "features›async functions›return": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a(){\n  return \"foo\";\n}\nvar p = a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function(result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
+      "code": "async function a() {\n  return \"foo\";\n}\nvar p = a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function (result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
     },
     "features›async functions›throw": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a(){\n  throw \"foo\";\n}\nvar p = a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.catch(function(result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
+      "code": "async function a() {\n  throw \"foo\";\n}\nvar p = a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.catch (function (result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
     },
     "features›async functions›no line break between async and function": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a(){}\ntry { Function(\"async\\n function a(){await 0}\")(); } catch(e) { return true; }"
+      "code": "async function a() {}\ntry { function (\"async\\n function a() {await 0}\")(); } catch (e) { return true; }"
     },
     "features›async functions›no \"prototype\" property": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a(){};\nreturn !a.hasOwnProperty(\"prototype\");"
+      "code": "async function a() {};\nreturn !a.hasOwnProperty(\"prototype\");"
     },
     "features›async functions›await": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "(async function (){\n  await Promise.resolve();\n  var a1 = await new Promise(function(resolve) { setTimeout(resolve,800,\"foo\"); });\n  var a2 = await new Promise(function(resolve) { setTimeout(resolve,800,\"bar\"); });\n  if (a1 + a2 === \"foobar\") {\n    asyncTestPassed();\n  }\n}());"
+      "code": "(async function () {\n  await Promise.resolve();\n  var a1 = await new Promise(function (resolve) { setTimeout(resolve,800,\"foo\"); });\n  var a2 = await new Promise(function (resolve) { setTimeout(resolve,800,\"bar\"); });\n  if (a1 + a2 === \"foobar\") {\n    asyncTestPassed();\n  }\n}());"
     },
     "features›async functions›await, rejection": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "(async function (){\n  await Promise.resolve();\n  try {\n    var a1 = await new Promise(function(_, reject) { setTimeout(reject,800,\"foo\"); });\n  } catch(e) {\n    if (e === \"foo\") {\n      asyncTestPassed();\n    }\n  }\n}());"
+      "code": "(async function () {\n  await Promise.resolve();\n  try {\n    var a1 = await new Promise(function (_, reject) { setTimeout(reject,800,\"foo\"); });\n  } catch (e) {\n    if (e === \"foo\") {\n      asyncTestPassed();\n    }\n  }\n}());"
     },
     "features›async functions›must await a value": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a(){ await Promise.resolve(); }\ntry { Function(\"(async function a(){ await; }())\")(); } catch(e) { return true; }"
+      "code": "async function a() { await Promise.resolve(); }\ntry { function (\"(async function a() { await; }())\")(); } catch (e) { return true; }"
     },
     "features›async functions›can await non-Promise values": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "(async function (){\n  await Promise.resolve();\n  var e = await \"foo\";\n  if (e === \"foo\") {\n    asyncTestPassed();\n  }\n}());"
+      "code": "(async function () {\n  await Promise.resolve();\n  var e = await \"foo\";\n  if (e === \"foo\") {\n    asyncTestPassed();\n  }\n}());"
     },
     "features›async functions›cannot await in parameters": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a(){ await Promise.resolve(); }\ntry { Function(\"(async function a(b = await Promise.resolve()){}())\")(); } catch(e) { return true; }"
+      "code": "async function a() { await Promise.resolve(); }\ntry { function (\"(async function a(b = await Promise.resolve()) {}())\")(); } catch (e) { return true; }"
     },
     "features›async functions›async methods, object literals": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "var o = {\n  async a(){ return await Promise.resolve(\"foo\"); }\n};\nvar p = o.a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function(result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
+      "code": "var o = {\n  async a() { return await Promise.resolve(\"foo\"); }\n};\nvar p = o.a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function (result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
     },
     "features›async functions›async methods, classes": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "class C {\n  async a(){ return await Promise.resolve(\"foo\"); }\n};\nvar p = new C().a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function(result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
+      "code": "class C {\n  async a() { return await Promise.resolve(\"foo\"); }\n};\nvar p = new C().a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function (result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
     },
     "features›async functions›async arrow functions in methods, classes": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "function doSomething(callback) {\n  callback();\n}\nclass C {\n  a(){\n    doSomething(async () => {\n      await 1;\n      asyncTestPassed();\n    });\n  }\n};\nvar p = new C().a();"
+      "code": "function doSomething(callback) {\n  callback();\n}\nclass C {\n  a() {\n    doSomething(async () => {\n      await 1;\n      asyncTestPassed();\n    });\n  }\n};\nvar p = new C().a();"
     },
     "features›async functions›async arrow functions": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "var a = async () => await Promise.resolve(\"foo\");\nvar p = a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function(result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
+      "code": "var a = async () => await Promise.resolve(\"foo\");\nvar p = a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function (result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
     },
     "features›async functions›correct prototype chain": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "var asyncFunctionProto = Object.getPrototypeOf(async function (){});\nreturn asyncFunctionProto !== function(){}.prototype\n  && Object.getPrototypeOf(asyncFunctionProto) === Function.prototype;"
+      "code": "var asyncFunctionProto = Object.getPrototypeOf(async function () {});\nreturn asyncFunctionProto !== function () {}.prototype\n  && Object.getPrototypeOf(asyncFunctionProto) === Function.prototype;"
     },
     "features›async functions›async function prototype, Symbol.toStringTag": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "return Object.getPrototypeOf(async function (){})[Symbol.toStringTag] === \"AsyncFunction\";"
+      "code": "return Object.getPrototypeOf(async function () {})[Symbol.toStringTag] === \"AsyncFunction\";"
     },
     "features›async functions›async function constructor": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "var a = async function (){}.constructor(\"return 'foo';\");\nvar p = a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function(result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
+      "code": "var a = async function () {}.constructor(\"return 'foo';\");\nvar p = a();\nif (!(p instanceof Promise)) {\n  return false;\n}\np.then(function (result) {\n  if (result === \"foo\") {\n    asyncTestPassed();\n  }\n});"
     },
     "features›shared memory and atomics›SharedArrayBuffer": {
       "code": "return typeof SharedArrayBuffer === 'function';"
@@ -2997,11 +2997,11 @@
     },
     "misc›RegExp \"u\" flag, case folding": {
       "spec": "https://github.com/tc39/ecma262/pull/525",
-      "code": "return \"ſ\".match(/\\w/iu) && !\"ſ\".match(/\\W/iu)\n&& \"\\u212a\".match(/\\w/iu) && !\"\\u212a\".match(/\\W/iu)\n&& \"\\u212a\".match(/.\\b/iu) && \"ſ\".match(/.\\b/iu)\n&& !\"\\u212a\".match(/.\\B/iu) && !\"ſ\".match(/.\\B/iu);"
+      "code": "return \"ſ\".match(/\\w/iu) && !\"ſ\".match(/\\W/iu)\n  && \"\\u212a\".match(/\\w/iu) && !\"\\u212a\".match(/\\W/iu)\n  && \"\\u212a\".match(/.\\b/iu) && \"ſ\".match(/.\\b/iu)\n  && !\"\\u212a\".match(/.\\B/iu) && !\"ſ\".match(/.\\B/iu);"
     },
     "misc›arguments.caller removed": {
       "spec": "https://github.com/tc39/ecma262/pull/689",
-      "code": "return (function(){\n  'use strict';\n  return !Object.getOwnPropertyDescriptor(arguments,'caller');\n})();"
+      "code": "return (function () {\n  'use strict';\n  return !Object.getOwnPropertyDescriptor(arguments, 'caller');\n})();"
     },
     "annex b›Object.prototype getter/setter methods›__defineGetter__": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
@@ -3013,7 +3013,7 @@
     },
     "annex b›Object.prototype getter/setter methods›__defineGetter__, ToObject(this)": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "var key = '__accessors_test__';\n__defineGetter__.call(1, key, function(){});\ntry {\n__defineGetter__.call(null, key, function(){});\n} catch(e){\nreturn true;\n}"
+      "code": "var key = '__accessors_test__';\n__defineGetter__.call(1, key, function () {});\ntry {\n  __defineGetter__.call(null, key, function () {});\n} catch (e) {\nreturn true;\n}"
     },
     "annex b›Object.prototype getter/setter methods›__defineSetter__": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
@@ -3025,7 +3025,7 @@
     },
     "annex b›Object.prototype getter/setter methods›__defineSetter__, ToObject(this)": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "var key = '__accessors_test__';\n__defineSetter__.call(1, key, function(){});\ntry {\n__defineSetter__.call(null, key, function(){});\n} catch(e){\nreturn true;\n}"
+      "code": "var key = '__accessors_test__';\n__defineSetter__.call(1, key, function () {});\ntry {\n__defineSetter__.call(null, key, function () {});\n} catch (e) {\nreturn true;\n}"
     },
     "annex b›Object.prototype getter/setter methods›__lookupGetter__": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
@@ -3037,51 +3037,51 @@
     },
     "annex b›Object.prototype getter/setter methods›__lookupGetter__, symbols": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "var sym = Symbol();\nvar sym2 = Symbol();\nvar obj = {};\nObject.defineProperty(obj, sym, { get: function() { return \"bar\"; }});\nObject.defineProperty(obj, sym2, { value: 1 });\nvar foo = Object.prototype.__lookupGetter__.call(obj, sym);\nreturn foo() === \"bar\"\n&& Object.prototype.__lookupGetter__.call(obj, sym2) === void undefined\n&& Object.prototype.__lookupGetter__.call(obj, Symbol()) === void undefined;"
+      "code": "var sym = Symbol();\nvar sym2 = Symbol();\nvar obj = {};\nObject.defineProperty(obj, sym, { get: function () { return \"bar\"; }});\nObject.defineProperty(obj, sym2, { value: 1 });\nvar foo = Object.prototype.__lookupGetter__.call(obj, sym);\nreturn foo() === \"bar\"\n  && Object.prototype.__lookupGetter__.call(obj, sym2) === void undefined\n  && Object.prototype.__lookupGetter__.call(obj, Symbol()) === void undefined;"
     },
     "annex b›Object.prototype getter/setter methods›__lookupGetter__, ToObject(this)": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "__lookupGetter__.call(1, 'key');\ntry {\n__lookupGetter__.call(null, 'key');\n} catch(e){\nreturn true;\n}"
+      "code": "__lookupGetter__.call(1, 'key');\ntry {\n  __lookupGetter__.call(null, 'key');\n} catch (e) {\n  return true;\n}"
     },
     "annex b›Object.prototype getter/setter methods›__lookupGetter__, data properties can shadow accessors": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "var a = { };\nvar b = Object.create(a);\nb.foo = 1;\na.__defineGetter__(\"foo\", function () {})\nreturn b.__lookupGetter__(\"foo\") === void undefined"
+      "code": "var a = {};\nvar b = Object.create(a);\nb.foo = 1;\na.__defineGetter__(\"foo\", function () {});\nreturn b.__lookupGetter__(\"foo\") === void undefined;"
     },
     "annex b›Object.prototype getter/setter methods›__lookupSetter__": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "var obj = {\nset foo(baz) { return \"bar\"; },\nqux: 1\n};\nvar foo = Object.prototype.__lookupSetter__.call(obj, \"foo\");\nreturn foo() === \"bar\"\n&& Object.prototype.__lookupSetter__.call(obj, \"qux\") === void undefined\n&& Object.prototype.__lookupSetter__.call(obj, \"baz\") === void undefined;"
+      "code": "var obj = {\n  set foo(baz) { return \"bar\"; },\n  qux: 1\n};\nvar foo = Object.prototype.__lookupSetter__.call(obj, \"foo\");\nreturn foo() === \"bar\"\n  && Object.prototype.__lookupSetter__.call(obj, \"qux\") === void undefined\n  && Object.prototype.__lookupSetter__.call(obj, \"baz\") === void undefined;"
     },
     "annex b›Object.prototype getter/setter methods›__lookupSetter__, prototype chain": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "var obj = {\nset foo(baz) { return \"bar\"; },\nqux: 1\n};\nvar foo = Object.prototype.__lookupSetter__.call(Object.create(obj), \"foo\");\nreturn foo() === \"bar\"\n&& Object.prototype.__lookupSetter__.call(obj, \"qux\") === void undefined\n&& Object.prototype.__lookupSetter__.call(obj, \"baz\") === void undefined;"
+      "code": "var obj = {\n  set foo(baz) { return \"bar\"; },\n  qux: 1\n};\nvar foo = Object.prototype.__lookupSetter__.call(Object.create(obj), \"foo\");\nreturn foo() === \"bar\"\n  && Object.prototype.__lookupSetter__.call(obj, \"qux\") === void undefined\n  && Object.prototype.__lookupSetter__.call(obj, \"baz\") === void undefined;"
     },
     "annex b›Object.prototype getter/setter methods›__lookupSetter__, symbols": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "var sym = Symbol();\nvar sym2 = Symbol();\nvar obj = {};\nObject.defineProperty(obj, sym, { set: function(baz) { return \"bar\"; }});\nObject.defineProperty(obj, sym2, { value: 1 });\nvar foo = Object.prototype.__lookupSetter__.call(obj, sym);\nreturn foo() === \"bar\"\n&& Object.prototype.__lookupSetter__.call(obj, sym2) === void undefined\n&& Object.prototype.__lookupSetter__.call(obj, Symbol()) === void undefined;"
+      "code": "var sym = Symbol();\nvar sym2 = Symbol();\nvar obj = {};\nObject.defineProperty(obj, sym, { set: function (baz) { return \"bar\"; }});\nObject.defineProperty(obj, sym2, { value: 1 });\nvar foo = Object.prototype.__lookupSetter__.call(obj, sym);\nreturn foo() === \"bar\"\n  && Object.prototype.__lookupSetter__.call(obj, sym2) === void undefined\n  && Object.prototype.__lookupSetter__.call(obj, Symbol()) === void undefined;"
     },
     "annex b›Object.prototype getter/setter methods›__lookupSetter__, ToObject(this)": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "__lookupSetter__.call(1, 'key');\ntry {\n__lookupSetter__.call(null, 'key');\n} catch(e){\nreturn true;\n}"
+      "code": "__lookupSetter__.call(1, 'key');\ntry {\n  __lookupSetter__.call(null, 'key');\n} catch (e) {\n  return true;\n}"
     },
     "annex b›Object.prototype getter/setter methods›__lookupSetter__, data properties can shadow accessors": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "var a = { };\nvar b = Object.create(a);\nb.foo = 1;\na.__defineSetter__(\"foo\", function () {})\nreturn b.__lookupSetter__(\"foo\") === void undefined"
+      "code": "var a = {};\nvar b = Object.create(a);\nb.foo = 1;\na.__defineSetter__(\"foo\", function () {})\nreturn b.__lookupSetter__(\"foo\") === void undefined"
     },
     "annex b›Proxy internal calls, getter/setter methods›__defineGetter__": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "// Object.prototype.__defineGetter__ -> DefinePropertyOrThrow -> [[DefineOwnProperty]]\nvar def = [];\nvar p = new Proxy({}, { defineProperty: function(o, v, desc) { def.push(v); Object.defineProperty(o, v, desc); return true; }});\nObject.prototype.__defineGetter__.call(p, \"foo\", Object);\nreturn def + '' === \"foo\";"
+      "code": "// Object.prototype.__defineGetter__ -> DefinePropertyOrThrow -> [[DefineOwnProperty]]\nvar def = [];\nvar p = new Proxy({}, {\n  defineProperty: function (o, v, desc) {\n    def.push(v);\n    Object.defineProperty(o, v, desc);\n    return true;\n  }\n});\nObject.prototype.__defineGetter__.call(p, \"foo\", Object);\nreturn def + '' === \"foo\";"
     },
     "annex b›Proxy internal calls, getter/setter methods›__defineSetter__": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "// Object.prototype.__defineSetter__ -> DefinePropertyOrThrow -> [[DefineOwnProperty]]\nvar def = [];\nvar p = new Proxy({}, { defineProperty: function(o, v, desc) { def.push(v); Object.defineProperty(o, v, desc); return true; }});\nObject.prototype.__defineSetter__.call(p, \"foo\", Object);\nreturn def + '' === \"foo\";"
+      "code": "// Object.prototype.__defineSetter__ -> DefinePropertyOrThrow -> [[DefineOwnProperty]]\nvar def = [];\nvar p = new Proxy({}, {\n  defineProperty: function (o, v, desc) {\n    def.push(v);\n    Object.defineProperty(o, v, desc);\n    return true;\n  }\n});\nObject.prototype.__defineSetter__.call(p, \"foo\", Object);\nreturn def + '' === \"foo\";"
     },
     "annex b›Proxy internal calls, getter/setter methods›__lookupGetter__": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "// Object.prototype.__lookupGetter__ -> [[GetOwnProperty]]\n// Object.prototype.__lookupGetter__ -> [[GetPrototypeOf]]\nvar gopd = [];\nvar gpo = false;\nvar p = new Proxy({}, {\ngetPrototypeOf: function(o) { gpo = true; return Object.getPrototypeOf(o); },\ngetOwnPropertyDescriptor: function(o, v) { gopd.push(v); return Object.getOwnPropertyDescriptor(o, v); }\n});\nObject.prototype.__lookupGetter__.call(p, \"foo\");\nreturn gopd + '' === \"foo\" && gpo;"
+      "code": "// Object.prototype.__lookupGetter__ -> [[GetOwnProperty]]\n// Object.prototype.__lookupGetter__ -> [[GetPrototypeOf]]\nvar gopd = [];\nvar gpo = false;\nvar p = new Proxy({}, {\n  getPrototypeOf: function (o) {\n    gpo = true;\n    return Object.getPrototypeOf(o);\n  },\n  getOwnPropertyDescriptor: function (o, v) {\n    gopd.push(v);\n    return Object.getOwnPropertyDescriptor(o, v);\n  }\n});\nObject.prototype.__lookupGetter__.call(p, \"foo\");\nreturn gopd + '' === \"foo\" && gpo;"
     },
     "annex b›Proxy internal calls, getter/setter methods›__lookupSetter__": {
       "spec": "https://tc39.github.io/ecma262/#sec-object.prototype.__defineGetter__",
-      "code": "// Object.prototype.__lookupSetter__ -> [[GetOwnProperty]]\n// Object.prototype.__lookupSetter__ -> [[GetPrototypeOf]]\nvar gopd = [];\nvar gpo = false;\nvar p = new Proxy({}, {\ngetPrototypeOf: function(o) { gpo = true; return Object.getPrototypeOf(o); },\ngetOwnPropertyDescriptor: function(o, v) { gopd.push(v); return Object.getOwnPropertyDescriptor(o, v); }\n});\nObject.prototype.__lookupSetter__.call(p, \"foo\");\nreturn gopd + '' === \"foo\" && gpo;"
+      "code": "// Object.prototype.__lookupSetter__ -> [[GetOwnProperty]]\n// Object.prototype.__lookupSetter__ -> [[GetPrototypeOf]]\nvar gopd = [];\nvar gpo = false;\nvar p = new Proxy({}, {\n  getPrototypeOf: function (o) {\n    gpo = true;\n    return Object.getPrototypeOf(o);\n  },\n  getOwnPropertyDescriptor: function (o, v) {\n    gopd.push(v);\n    return Object.getOwnPropertyDescriptor(o, v);\n  }\n});\nObject.prototype.__lookupSetter__.call(p, \"foo\");\nreturn gopd + '' === \"foo\" && gpo;"
     },
     "annex b›assignments allowed in for-in head in non-strict mode": {
       "spec": "https://tc39.github.io/ecma262/#sec-initializers-in-forin-statement-heads",
@@ -3091,15 +3091,15 @@
   "ES2018": {
     "features›object rest/spread properties›object rest properties": {
       "spec": "https://github.com/tc39/proposal-object-rest-spread",
-      "code": "var {a, ...rest} = {a: 1, b: 2, c: 3};\nreturn a === 1 && rest.a === void undefined && rest.b === 2 && rest.c === 3;"
+      "code": "var { a, ...rest } = { a: 1, b: 2, c: 3 };\nreturn a === 1 && rest.a === void undefined && rest.b === 2 && rest.c === 3;"
     },
     "features›object rest/spread properties›object spread properties": {
       "spec": "https://github.com/tc39/proposal-object-rest-spread",
-      "code": "var spread = {b: 2, c: 3};\nvar O = {a: 1, ...spread};\nreturn O !== spread && (O.a + O.b + O.c) === 6;"
+      "code": "var spread = { b: 2, c: 3 };\nvar O = { a: 1, ...spread };\nreturn O !== spread && (O.a + O.b + O.c) === 6;"
     },
     "features›Promise.prototype.finally›basic support": {
       "spec": "https://github.com/tc39/proposal-promise-finally",
-      "code": "var p1 = Promise.resolve(\"foo\");\nvar p2 = Promise.reject(\"bar\");\nvar score = 0;\nfunction thenFn(result)  {\n  score += (result === \"foo\");\n  check();\n}\nfunction catchFn(result) {\n  score += (result === \"bar\");\n  check();\n}\nfunction finallyFn() {\n  score += (arguments.length === 0);\n  check();\n}\np1.then(thenFn);\np1.finally(finallyFn);\np1.finally(function() {\n  // should return a new Promise\n  score += p1.finally() !== p1;\n  check();\n});\np2.catch(catchFn);\np2.finally(finallyFn);\nfunction check() {\n  if (score === 5) asyncTestPassed();\n}"
+      "code": "var p1 = Promise.resolve(\"foo\");\nvar p2 = Promise.reject(\"bar\");\nvar score = 0;\nfunction thenFn(result) {\n  score += (result === \"foo\");\n  check();\n}\nfunction catchFn(result) {\n  score += (result === \"bar\");\n  check();\n}\nfunction finallyFn() {\n  score += (arguments.length === 0);\n  check();\n}\np1.then(thenFn);\np1.finally(finallyFn);\np1.finally(function () {\n  // should return a new Promise\n  score += p1.finally() !== p1;\n  check();\n});\np2.catch (catchFn);\np2.finally(finallyFn);\nfunction check() {\n  if (score === 5) asyncTestPassed();\n}"
     },
     "features›Promise.prototype.finally›don't change resolution value": {
       "spec": "https://github.com/tc39/proposal-promise-finally",
@@ -3107,7 +3107,7 @@
     },
     "features›Promise.prototype.finally›change rejection value": {
       "spec": "https://github.com/tc39/proposal-promise-finally",
-      "code": "var score = 0;\nPromise\n  .reject(\"foobar\")\n  .finally(function() {\n    return Promise.reject(\"foo\");\n  })\n  .catch(function(result) {\n    score += (result === \"foo\");\n    check();\n    return Promise.reject(\"foobar\");\n  })\n  .finally(function() {\n    throw new Error('bar');\n  })\n  .catch(function(result) {\n    score += (result.message === \"bar\");\n    check();\n  });\nfunction check() {\n  if (score === 2) asyncTestPassed();\n}"
+      "code": "var score = 0;\nPromise\n  .reject(\"foobar\")\n  .finally(function () {\n    return Promise.reject(\"foo\");\n  })\n  .catch (function (result) {\n    score += (result === \"foo\");\n    check();\n    return Promise.reject(\"foobar\");\n  })\n  .finally(function () {\n    throw new Error('bar');\n  })\n  .catch (function (result) {\n    score += (result.message === \"bar\");\n    check();\n  });\nfunction check() {\n  if (score === 2) asyncTestPassed();\n}"
     },
     "features›s (dotAll) flag for regular expressions": {
       "spec": "https://tc39.github.io/ecma262/#sec-get-regexp.prototype.dotAll",
@@ -3159,19 +3159,19 @@
     },
     "features›Asynchronous Iterators›async generators": {
       "spec": "https://github.com/tc39/proposal-async-iteration",
-      "code": "async function*generator(){\n  yield 42;\n}\n\nvar iterator = generator();\niterator.next().then(function(step){\n  if(iterator[Symbol.asyncIterator]() === iterator && step.done === false && step.value === 42)asyncTestPassed();\n});"
+      "code": "async function*generator() {\n  yield 42;\n}\n\nvar iterator = generator();\niterator.next().then(function (step) {\n  if(iterator[Symbol.asyncIterator]() === iterator && step.done === false && step.value === 42)asyncTestPassed();\n});"
     },
     "features›Asynchronous Iterators›for-await-of loops": {
       "spec": "https://github.com/tc39/proposal-async-iteration",
-      "code": "var asyncIterable = {};\nasyncIterable[Symbol.asyncIterator] = function(){\n  var i = 0;\n  return {\n    next: function(){\n      switch(++i){\n        case 1: return Promise.resolve({done: false, value: 'a'});\n        case 2: return Promise.resolve({done: false, value: 'b'});\n      } return Promise.resolve({done: true});\n    }\n  };\n};\n\n(async function(){\n  var result = '';\n  for await(var value of asyncIterable)result += value;\n  if(result === 'ab')asyncTestPassed();\n})();"
+      "code": "var asyncIterable = {};\nasyncIterable[Symbol.asyncIterator] = function () {\n  var i = 0;\n  return {\n    next: function () {\n      switch(++i) {\n        case 1: return Promise.resolve({done: false, value: 'a'});\n        case 2: return Promise.resolve({done: false, value: 'b'});\n      } return Promise.resolve({done: true});\n    }\n  };\n};\n\n(async function () {\n  var result = '';\n  for await(var value of asyncIterable)result += value;\n  if(result === 'ab')asyncTestPassed();\n})();"
     },
     "misc›Proxy \"ownKeys\" handler, duplicate keys for non-extensible targets": {
       "spec": "https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots-ownpropertykeys",
-      "code": "var p = new Proxy({}, {\n  ownKeys() {\n    return [\"a\", \"a\"];\n  }\n});\ntry {\n  Object.keys(p);\n} catch (e) {\n   return e instanceof TypeError\n}\nreturn false;"
+      "code": "var p = new Proxy({}, {\n  ownKeys() {\n    return [\"a\", \"a\"];\n  }\n});\ntry {\n  Object.keys(p);\n} catch (e) {\n  return e instanceof TypeError;\n}\nreturn false;"
     },
     "misc›template literal revision": {
       "spec": "https://github.com/tc39/proposal-template-literal-revision",
-      "code": "function tag(strings, a) {\nreturn strings[0] === void 0 &&\nstrings.raw[0] === \"\\\\01\\\\1\\\\xg\\\\xAg\\\\u0\\\\u0g\\\\u00g\\\\u000g\\\\u{g\\\\u{0\\\\u{110000}\" &&\nstrings[1] === \"\\0\" &&\nstrings.raw[1] === \"\\\\0\" &&\na === 0;\n}\nreturn tag`\\01\\1\\xg\\xAg\\u0\\u0g\\u00g\\u000g\\u{g\\u{0\\u{110000}${0}\\0`;"
+      "code": "function tag(strings, a) {\n  return strings[0] === void undefined\n    && strings.raw[0] === \"\\\\01\\\\1\\\\xg\\\\xAg\\\\u0\\\\u0g\\\\u00g\\\\u000g\\\\u{g\\\\u{0\\\\u{110000}\"\n    && strings[1] === \"\\0\"\n    && strings.raw[1] === \"\\\\0\"\n    && a === 0;\n}\nreturn tag`\\01\\1\\xg\\xAg\\u0\\u0g\\u00g\\u000g\\u{g\\u{0\\u{110000}${0}\\0`;"
     }
   },
   "ES2019": {
@@ -3225,7 +3225,7 @@
     },
     "misc›optional catch binding›await": {
       "spec": "https://github.com/tc39/proposal-optional-catch-binding",
-      "code": "(async function (){\n  try {\n    await Promise.reject();\n  }\n  catch {\n    asyncTestPassed();\n  }\n})();"
+      "code": "(async function () {\n  try {\n    await Promise.reject();\n  }\n  catch {\n    asyncTestPassed();\n  }\n})();"
     },
     "misc›optional catch binding›yield": {
       "spec": "https://github.com/tc39/proposal-optional-catch-binding",
@@ -3233,7 +3233,7 @@
     },
     "misc›Function.prototype.toString revision›functions created with the Function constructor": {
       "spec": "https://github.com/tc39/Function-prototype-toString-revision",
-      "code": "var fn = Function('a', ' /\\x2A a \\x2A/ b, c /\\x2A b \\x2A/ //', '/\\x2A c \\x2A/ ; /\\x2A d \\x2A/ //');\nvar str = 'function anonymous(a, /\\x2A a \\x2A/ b, c /\\x2A b \\x2A/ //\\n) {\\n/\\x2A c \\x2A/ ; /\\x2A d \\x2A/ //\\n}';\nreturn fn + '' === str;"
+      "code": "var fn = function ('a', ' /\\x2A a \\x2A/ b, c /\\x2A b \\x2A/ //', '/\\x2A c \\x2A/ ; /\\x2A d \\x2A/ //');\nvar str = 'function anonymous(a, /\\x2A a \\x2A/ b, c /\\x2A b \\x2A/ //\\n) {\\n/\\x2A c \\x2A/ ; /\\x2A d \\x2A/ //\\n}';\nreturn fn + '' === str;"
     },
     "misc›Function.prototype.toString revision›arrows": {
       "spec": "https://github.com/tc39/Function-prototype-toString-revision",
@@ -3249,7 +3249,7 @@
     },
     "misc›Function.prototype.toString revision›class expression with explicit constructor": {
       "spec": "https://github.com/tc39/Function-prototype-toString-revision",
-      "code": "var str = 'class /\\x2A a \\x2A/ A /\\x2A b \\x2A/ extends /\\x2A c \\x2A/ function B(){} /\\x2A d \\x2A/ { /\\x2A e \\x2A/ constructor /\\x2A f \\x2A/ ( /\\x2A g \\x2A/ ) /\\x2A h \\x2A/ { /\\x2A i \\x2A/ ; /\\x2A j \\x2A/ } /\\x2A k \\x2A/ m /\\x2A l \\x2A/ ( /\\x2A m \\x2A/ ) /\\x2A n \\x2A/ { /\\x2A o \\x2A/ } /\\x2A p \\x2A/ }';\nreturn eval('(/\\x2A before \\x2A/' + str + '/\\x2A after \\x2A/)') + '' === str;"
+      "code": "var str = 'class /\\x2A a \\x2A/ A /\\x2A b \\x2A/ extends /\\x2A c \\x2A/ function B() {} /\\x2A d \\x2A/ { /\\x2A e \\x2A/ constructor /\\x2A f \\x2A/ ( /\\x2A g \\x2A/ ) /\\x2A h \\x2A/ { /\\x2A i \\x2A/ ; /\\x2A j \\x2A/ } /\\x2A k \\x2A/ m /\\x2A l \\x2A/ ( /\\x2A m \\x2A/ ) /\\x2A n \\x2A/ { /\\x2A o \\x2A/ } /\\x2A p \\x2A/ }';\nreturn eval('(/\\x2A before \\x2A/' + str + '/\\x2A after \\x2A/)') + '' === str;"
     },
     "misc›Function.prototype.toString revision›unicode escape sequences in identifiers": {
       "spec": "https://github.com/tc39/Function-prototype-toString-revision",
@@ -3275,7 +3275,7 @@
   "ES2020": {
     "features›String.prototype.matchAll›basic functionality": {
       "spec": "https://github.com/tc39/String.prototype.matchAll",
-      "code": "var iterator = '11a2bb'.matchAll(/(\\d)(\\D)/g);\nif(iterator[Symbol.iterator]() !== iterator)return false;\nvar a = '', b = '', c = '', step;\nwhile(!(step = iterator.next()).done){\n  a += step.value[0];\n  b += step.value[1];\n  c += step.value[2];\n}\nreturn a === '1a2b'\n  && b === '12'\n  && c === 'ab';"
+      "code": "var iterator = '11a2bb'.matchAll(/(\\d)(\\D)/g);\nif(iterator[Symbol.iterator]() !== iterator)return false;\nvar a = '', b = '', c = '', step;\nwhile(!(step = iterator.next()).done) {\n  a += step.value[0];\n  b += step.value[1];\n  c += step.value[2];\n}\nreturn a === '1a2b'\n  && b === '12'\n  && c === 'ab';"
     },
     "features›String.prototype.matchAll›throws on non-global regex": {
       "spec": "https://github.com/tc39/String.prototype.matchAll",
@@ -3319,11 +3319,11 @@
     },
     "features›globalThis›\"globalThis\" global property is global object": {
       "spec": "https://github.com/tc39/proposal-global",
-      "code": "var actualGlobal = Function('return this')();\nactualGlobal.__system_global_test__ = 42;\nreturn typeof globalThis === 'object' && globalThis && globalThis === actualGlobal && !globalThis.lacksGlobalThis && globalThis.__system_global_test__ === 42;"
+      "code": "var actualGlobal = function ('return this')();\nactualGlobal.__system_global_test__ = 42;\nreturn typeof globalThis === 'object' && globalThis && globalThis === actualGlobal && !globalThis.lacksGlobalThis && globalThis.__system_global_test__ === 42;"
     },
     "features›globalThis›\"globalThis\" global property has correct property descriptor": {
       "spec": "https://github.com/tc39/proposal-global",
-      "code": "var actualGlobal = Function('return this')();\nif (typeof globalThis !== 'object') { return false; }\nif (!('globalThis' in actualGlobal)) { return false; }\nif (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }\n\nvar descriptor = Object.getOwnPropertyDescriptor(actualGlobal, 'globalThis');\nreturn descriptor.value === actualGlobal && !descriptor.enumerable && descriptor.configurable && descriptor.writable;"
+      "code": "var actualGlobal = function ('return this')();\nif (typeof globalThis !== 'object') { return false; }\nif (!('globalThis' in actualGlobal)) { return false; }\nif (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }\n\nvar descriptor = Object.getOwnPropertyDescriptor(actualGlobal, 'globalThis');\nreturn descriptor.value === actualGlobal && !descriptor.enumerable && descriptor.configurable && descriptor.writable;"
     },
     "features›optional chaining operator (?.)›optional property access": {
       "spec": "https://github.com/tc39/proposal-optional-chaining",
@@ -3361,7 +3361,7 @@
     },
     "features›Promise.any›AggregateError": {
       "spec": "https://github.com/tc39/proposal-promise-any",
-      "code": "Promise.any([\n  Promise.reject(1),\n  Promise.reject(2),\n  Promise.reject(3)\n]).catch(error => {\n  if (error instanceof AggregateError && error.errors.length === 3) asyncTestPassed();\n});"
+      "code": "Promise.any([\n  Promise.reject(1),\n  Promise.reject(2),\n  Promise.reject(3)\n]).catch (error => {\n  if (error instanceof AggregateError && error.errors.length === 3) asyncTestPassed();\n});"
     },
     "features›WeakReferences›WeakRef minimal support": {
       "spec": "https://github.com/tc39/proposal-weakrefs",
@@ -3369,7 +3369,7 @@
     },
     "features›WeakReferences›FinalizationRegistry minimal support": {
       "spec": "https://github.com/tc39/proposal-weakrefs",
-      "code": "var fr = new FinalizationRegistry(function() {});\nreturn Object.getPrototypeOf(fr) === FinalizationRegistry.prototype;"
+      "code": "var fr = new FinalizationRegistry(function () {});\nreturn Object.getPrototypeOf(fr) === FinalizationRegistry.prototype;"
     },
     "features›Logical Assignment›||= basic support": {
       "spec": "https://github.com/tc39/proposal-logical-assignment/",
@@ -3419,19 +3419,19 @@
     },
     "features›instance class fields›private instance class fields basic support": {
       "spec": "https://github.com/tc39/proposal-class-fields",
-      "code": "class C {\n  #x;\n  constructor(x){\n    this.#x = x;\n  }\n  x(){\n    return this.#x;\n  }\n}\nreturn new C(42).x() === 42;"
+      "code": "class C {\n  #x;\n  constructor(x) {\n    this.#x = x;\n  }\n  x() {\n    return this.#x;\n  }\n}\nreturn new C(42).x() === 42;"
     },
     "features›instance class fields›private instance class fields initializers": {
       "spec": "https://github.com/tc39/proposal-class-fields",
-      "code": "class C {\n  #x = 42;\n  x(){\n    return this.#x;\n  }\n}\nreturn new C().x() === 42;"
+      "code": "class C {\n  #x = 42;\n  x() {\n    return this.#x;\n  }\n}\nreturn new C().x() === 42;"
     },
     "features›instance class fields›optional private instance class fields access": {
       "spec": "https://github.com/tc39/proposal-class-fields",
-      "code": "class C {\n  #x = 42;\n  x(o = this){\n    return o?.#x;\n  }\n}\nreturn new C().x() === 42 && new C().x(null) === void 0;"
+      "code": "class C {\n  #x = 42;\n  x(o = this) {\n    return o?.#x;\n  }\n}\nreturn new C().x() === 42 && new C().x(null) === void undefined;"
     },
     "features›instance class fields›optional deep private instance class fields access": {
       "spec": "https://github.com/tc39/proposal-class-fields",
-      "code": "class C {\n  #x = 42;\n  x(o = {p: this}){\n    return o?.p.#x;\n  }\n}\nreturn new C().x() === 42 && new C().x(null) === void 0;"
+      "code": "class C {\n  #x = 42;\n  x(o = { p: this }) {\n    return o?.p.#x;\n  }\n}\nreturn new C().x() === 42 && new C().x(null) === void undefined;"
     },
     "features›instance class fields›computed instance class fields": {
       "spec": "https://github.com/tc39/proposal-class-fields",
@@ -3451,7 +3451,7 @@
     },
     "features›static class fields›private static class fields": {
       "spec": "https://github.com/tc39/proposal-static-class-features/",
-      "code": "class C {\n  static #x = 42;\n  x(){\n    return C.#x;\n  }\n}\nreturn new C().x() === 42;"
+      "code": "class C {\n  static #x = 42;\n  x() {\n    return C.#x;\n  }\n}\nreturn new C().x() === 42;"
     },
     "features›static class fields›computed static class fields": {
       "spec": "https://github.com/tc39/proposal-static-class-features/",
@@ -3571,7 +3571,7 @@
     },
     "features›RegExp Match Indices (`hasIndices` / `d` flag)›shows up in flags": {
       "spec": "https://github.com/tc39/proposal-regexp-match-indices",
-      "code": "var expected = ['hasIndices'];\n// Sorted alphabetically by shortname – \"dgimsuy\".\nif ('global' in RegExp.prototype) expected.push('global');\nif ('ignoreCase' in RegExp.prototype) expected.push('ignoreCase');\nif ('multiline' in RegExp.prototype) expected.push('multiline');\nif ('dotAll' in RegExp.prototype) expected.push('dotAll');\nif ('unicode' in RegExp.prototype) expected.push('unicode');\nif ('sticky' in RegExp.prototype) expected.push('sticky');\nvar actual = [];\nvar p = new Proxy({}, { get: function(o, k) { actual.push(k); return o[k]; }});\nObject.getOwnPropertyDescriptor(RegExp.prototype, 'flags').get.call(p);\nif (expected.length !== actual.length) return false;\nfor (var i = 0; i < expected.length; i++) {\n  if (expected[i] !== actual[i]) return false;\n}\nreturn true;"
+      "code": "var expected = ['hasIndices'];\n// Sorted alphabetically by shortname – \"dgimsuy\".\nif ('global' in RegExp.prototype) expected.push('global');\nif ('ignoreCase' in RegExp.prototype) expected.push('ignoreCase');\nif ('multiline' in RegExp.prototype) expected.push('multiline');\nif ('dotAll' in RegExp.prototype) expected.push('dotAll');\nif ('unicode' in RegExp.prototype) expected.push('unicode');\nif ('sticky' in RegExp.prototype) expected.push('sticky');\nvar actual = [];\nvar p = new Proxy({}, { get: function (o, k) { actual.push(k); return o[k]; }});\nObject.getOwnPropertyDescriptor(RegExp.prototype, 'flags').get.call(p);\nif (expected.length !== actual.length) return false;\nfor (var i = 0; i < expected.length; i++) {\n  if (expected[i] !== actual[i]) return false;\n}\nreturn true;"
     }
   },
   "ES2023": {
@@ -3631,7 +3631,7 @@
     },
     "features›RegExp `v` flag›shows up in flags": {
       "spec": "https://github.com/tc39/proposal-regexp-v-flag",
-      "code": "var flags = [];\nvar p = new Proxy({}, { get: function(o, k) { flags.push(k); return o[k]; }});\nObject.getOwnPropertyDescriptor(RegExp.prototype, 'flags').get.call(p);\nreturn flags.indexOf(\"unicodeSets\") !== -1;"
+      "code": "var flags = [];\nvar p = new Proxy({}, { get: function (o, k) { flags.push(k); return o[k]; }});\nObject.getOwnPropertyDescriptor(RegExp.prototype, 'flags').get.call(p);\nreturn flags.indexOf(\"unicodeSets\") !== -1;"
     },
     "features›RegExp `v` flag›Unicode 15.1": {
       "spec": "https://github.com/tc39/proposal-regexp-v-flag",
@@ -3652,6 +3652,18 @@
     "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.detached": {
       "spec": "https://github.com/tc39/proposal-arraybuffer-transfer",
       "code": "const buffer1 = new Uint8Array([1, 2]).buffer;\nconst buffer2 = buffer1.transfer();\nreturn buffer1.detached && !buffer2.detached;"
+    },
+    "features›Promise.withResolvers": {
+      "spec": "https://tc39.es/proposal-promise-with-resolvers/",
+      "code": "var obj = Promise.withResolvers();\nreturn obj instanceof Object\n  && obj.promise instanceof Promise\n  && typeof obj.resolve === 'function'\n  && typeof obj.reject === 'function';"
+    },
+    "features›Array Grouping›Object.groupBy()": {
+      "spec": "https://github.com/tc39/proposal-array-grouping",
+      "code": "const array = [1, 2, 3, 4];\nconst obj = Object.groupBy(array, (num, index) => {\n  return num % 2 === 0 ? 'even': 'odd';\n});\nreturn !('toString' in obj) && obj.even[0] == 2 && obj.odd[0] == 1;"
+    },
+    "features›Array Grouping›Map.groupBy()": {
+      "spec": "https://github.com/tc39/proposal-array-grouping",
+      "code": "const array = [1, 2, 3, 4];\nconst odd  = { odd: true };\nconst even = { even: true };\nconst map = Map.groupBy(array, (num, index) => {\n  return num % 2 === 0 ? even: odd;\n});\nreturn map instanceof Map && map.get(even)[0] === 2 && map.get(odd)[0] === 1;"
     }
   },
   "ES2025": {
@@ -3715,10 +3727,6 @@
       "spec": "https://github.com/tc39/proposal-iterator-helpers",
       "code": "const iterator = Iterator.from({\n  i: 0,\n  next() {\n    return { value: ++this.i, done: this.i > 3 };\n  }\n});\nreturn 'next' in iterator\n  && iterator instanceof Iterator\n  && Array.from(iterator).join() === '1,2,3';"
     },
-    "features›Iterator Helpers›Iterator.prototype.asIndexedPairs": {
-      "spec": "https://github.com/tc39/proposal-iterator-helpers",
-      "code": "return Array.from([1, 2, 3].values().asIndexedPairs()).join() === '0,1,1,2,2,3';"
-    },
     "features›Iterator Helpers›Iterator.prototype.drop": {
       "spec": "https://github.com/tc39/proposal-iterator-helpers",
       "code": "return Array.from([1, 2, 3].values().drop(1)).join() === '2,3';"
@@ -3766,6 +3774,9 @@
     "features›Iterator Helpers›Iterator.prototype[@@toStringTag]": {
       "spec": "https://github.com/tc39/proposal-iterator-helpers",
       "code": "return Iterator.prototype[Symbol.toStringTag] === 'Iterator';"
+    },
+    "features›Promise.try": {
+      "code": "var called = false;\nvar argsMatch = false;\nvar p = Promise.try(function () { called = true; })\nvar p2 = Promise.try(function () {\n  'use strict';\n  argsMatch = this === undefined && arguments.length === 2 && args[0] === p && args[1] === 2;\n}, [p, 2]);\n\nreturn p instanceof Promise && called && argsMatch;"
     }
   },
   "ESNEXT": {
@@ -3792,6 +3803,10 @@
     "Stage 3›RegExp Pattern Modifiers›s flag": {
       "spec": "https://github.com/tc39/proposal-regexp-modifiers",
       "code": "const regex = /.(?-s:.)/s;\nreturn regex.test(\"\\na\") && regex.test(\"aa\") && !regex.test(\"\\n\\n\");"
+    },
+    "Stage 3›RegExp Escaping": {
+      "spec": "https://github.com/tc39/proposal-regex-escaping",
+      "code": "return RegExp.escape(\"The Quick Brown Fox\") === \"The\\\\ Quick\\\\ Brown\\\\ Fox\" &&\n  RegExp.escape(\"(*.*)\") === \"\\\\(\\\\*\\\\.\\\\*\\\\)\" &&\n  RegExp.escape(\"｡^･ｪ･^｡\") === \"｡\\\\^･ｪ･\\\\^｡\" &&\n  RegExp.escape(\"\\\\d \\\\D (?:)\") === \"\\\\\\\\d \\\\\\\\D \\\\(\\\\?\\\\:\\\\)\";"
     },
     "Stage 2.7›ShadowRealm": {
       "spec": "https://github.com/tc39/proposal-shadowrealm",
@@ -3848,10 +3863,6 @@
     "Stage 2›Async Iterator Helpers›AsyncIterator.from, iterator": {
       "spec": "https://github.com/tc39/proposal-async-iterator-helpers",
       "code": "async function toArray(iterator) {\n  const result = [];\n  for await (const it of iterator) result.push(it);\n  return result;\n}\n\nconst iterator = AsyncIterator.from([1, 2, 3].values());\n\nif (!('next' in iterator) || !(iterator instanceof AsyncIterator)) return false;\n\ntoArray(iterator).then(it => {\n  if (it.join() === '1,2,3') asyncTestPassed();\n});"
-    },
-    "Stage 2›Async Iterator Helpers›AsyncIterator.prototype.asIndexedPairs": {
-      "spec": "https://github.com/tc39/proposal-async-iterator-helpers",
-      "code": "async function toArray(iterator) {\n  const result = [];\n  for await (const it of iterator) result.push(it);\n  return result;\n}\n\ntoArray((async function*() { yield * [1, 2, 3] })().asIndexedPairs()).then(it => {\n  if (it.join() === '0,1,1,2,2,3') asyncTestPassed();\n});"
     },
     "Stage 2›Async Iterator Helpers›AsyncIterator.prototype.drop": {
       "spec": "https://github.com/tc39/proposal-async-iterator-helpers",
