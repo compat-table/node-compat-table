@@ -3792,18 +3792,6 @@
       "spec": "https://github.com/tc39/proposal-regexp-legacy-features",
       "code": "for (var i = 1; i < 10; i++) {\n  if (!(('$' + i) in RegExp)) return false;\n}\nreturn true;"
     },
-    "Stage 3›RegExp Pattern Modifiers›i flag": {
-      "spec": "https://github.com/tc39/proposal-regexp-modifiers",
-      "code": "const regex = /^[a-z](?-i:[a-z])$/i;\nreturn regex.test(\"ab\") && regex.test(\"Ab\") && !regex.test(\"aB\");"
-    },
-    "Stage 3›RegExp Pattern Modifiers›m flag": {
-      "spec": "https://github.com/tc39/proposal-regexp-modifiers",
-      "code": "const regex = /^a|(?m:^b)/;\nreturn regex.test(\"a\") && regex.test(\"b\") && regex.test(\"c\\nb\") && !regex.test(\"c\\na\");"
-    },
-    "Stage 3›RegExp Pattern Modifiers›s flag": {
-      "spec": "https://github.com/tc39/proposal-regexp-modifiers",
-      "code": "const regex = /.(?-s:.)/s;\nreturn regex.test(\"\\na\") && regex.test(\"aa\") && !regex.test(\"\\n\\n\");"
-    },
     "Stage 3›RegExp Escaping": {
       "spec": "https://github.com/tc39/proposal-regex-escaping",
       "code": "return RegExp.escape(\"The Quick Brown Fox\") === \"The\\\\ Quick\\\\ Brown\\\\ Fox\" &&\n  RegExp.escape(\"(*.*)\") === \"\\\\(\\\\*\\\\.\\\\*\\\\)\" &&\n  RegExp.escape(\"｡^･ｪ･^｡\") === \"｡\\\\^･ｪ･\\\\^｡\" &&\n  RegExp.escape(\"\\\\d \\\\D (?:)\") === \"\\\\\\\\d \\\\\\\\D \\\\(\\\\?\\\\:\\\\)\";"
