@@ -29031,6 +29031,165 @@ return true;</div>}
             </div>
           </td>
         </tr>
+        <tr>
+          <td class="feature sub" colspan="3">
+            <h3>
+              <div class="hash" id="ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex"></div><a href="#ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex">Uint8Array to/from base64 and hex</a>
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-toBase64--"></div><a class="anchor" href="#ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-toBase64--">§</a><a href="https://github.com/tc39/proposal-arraybuffer-base64">Uint8Array.toBase64()</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const arr = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+return arr.toBase64() === &quot;SGVsbG8gV29ybGQ=&quot;;</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const arr = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+return arr.toBase64() === &quot;SGVsbG8gV29ybGQ=&quot;;</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-fromBase64--"></div><a class="anchor" href="#ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-fromBase64--">§</a><a href="https://github.com/tc39/proposal-arraybuffer-base64">Uint8Array.fromBase64()</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+const arr2 = Uint8Array.fromBase64(&quot;SGVsbG8gV29ybGQ=&quot;);
+return arr1.length === arr2.length &amp;&amp;
+       arr1.every((element, index) =&gt; element === arr2[index]);</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+const arr2 = Uint8Array.fromBase64(&quot;SGVsbG8gV29ybGQ=&quot;);
+return arr1.length === arr2.length &amp;&amp;
+       arr1.every((element, index) =&gt; element === arr2[index]);</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-setFromBase64--"></div><a class="anchor" href="#ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-setFromBase64--">§</a><a href="https://github.com/tc39/proposal-arraybuffer-base64">Uint8Array.setFromBase64()</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+let arr2 = new Uint8Array(16);
+let { read, written } = arr2.setFromBase64(&quot;SGVsbG8gV29ybGQ=&quot;);
+return read == 16 &amp;&amp; written == 11 &amp;&amp;
+       arr1.every((element, index) =&gt; element === arr2[index]);</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+let arr2 = new Uint8Array(16);
+let { read, written } = arr2.setFromBase64(&quot;SGVsbG8gV29ybGQ=&quot;);
+return read == 16 &amp;&amp; written == 11 &amp;&amp;
+       arr1.every((element, index) =&gt; element === arr2[index]);</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-toHex--"></div><a class="anchor" href="#ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-toHex--">§</a><a href="https://github.com/tc39/proposal-arraybuffer-base64">Uint8Array.toHex()</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const arr = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+return arr.toHex() === &quot;48656c6c6f20576f726c64&quot;;</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const arr = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+return arr.toHex() === &quot;48656c6c6f20576f726c64&quot;;</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-fromHex--"></div><a class="anchor" href="#ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-fromHex--">§</a><a href="https://github.com/tc39/proposal-arraybuffer-base64">Uint8Array.fromHex()</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+const arr2 = Uint8Array.fromHex(&quot;48656c6c6f20576f726c64&quot;);
+return arr1.length === arr2.length &amp;&amp;
+       arr1.every((element, index) =&gt; element === arr2[index]);</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+const arr2 = Uint8Array.fromHex(&quot;48656c6c6f20576f726c64&quot;);
+return arr1.length === arr2.length &amp;&amp;
+       arr1.every((element, index) =&gt; element === arr2[index]);</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-setFromHex--"></div><a class="anchor" href="#ESNEXT-Stage-3-Uint8Array-to-from-base64-and-hex-Uint8Array-setFromHex--">§</a><a href="https://github.com/tc39/proposal-arraybuffer-base64">Uint8Array.setFromHex()</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+let arr2 = new Uint8Array(16);
+let { read, written } = arr2.setFromHex(&quot;48656c6c6f20576f726c64&quot;);
+return read == 22 &amp;&amp; written == 11 &amp;&amp;
+       arr1.every((element, index) =&gt; element === arr2[index]);</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);
+let arr2 = new Uint8Array(16);
+let { read, written } = arr2.setFromHex(&quot;48656c6c6f20576f726c64&quot;);
+return read == 22 &amp;&amp; written == 11 &amp;&amp;
+       arr1.every((element, index) =&gt; element === arr2[index]);</div>}
+            </div>
+          </td>
+        </tr>
       </table>
       <table class="results">
         <caption>

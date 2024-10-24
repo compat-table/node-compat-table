@@ -3796,6 +3796,30 @@
       "spec": "https://github.com/tc39/proposal-regex-escaping",
       "code": "return RegExp.escape(\"The Quick Brown Fox\") === \"The\\\\ Quick\\\\ Brown\\\\ Fox\" &&\n  RegExp.escape(\"(*.*)\") === \"\\\\(\\\\*\\\\.\\\\*\\\\)\" &&\n  RegExp.escape(\"｡^･ｪ･^｡\") === \"｡\\\\^･ｪ･\\\\^｡\" &&\n  RegExp.escape(\"\\\\d \\\\D (?:)\") === \"\\\\\\\\d \\\\\\\\D \\\\(\\\\?\\\\:\\\\)\";"
     },
+    "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.toBase64()": {
+      "spec": "https://github.com/tc39/proposal-arraybuffer-base64",
+      "code": "const arr = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);\nreturn arr.toBase64() === \"SGVsbG8gV29ybGQ=\";"
+    },
+    "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.fromBase64()": {
+      "spec": "https://github.com/tc39/proposal-arraybuffer-base64",
+      "code": "const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);\nconst arr2 = Uint8Array.fromBase64(\"SGVsbG8gV29ybGQ=\");\nreturn arr1.length === arr2.length &&\n       arr1.every((element, index) => element === arr2[index]);"
+    },
+    "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.setFromBase64()": {
+      "spec": "https://github.com/tc39/proposal-arraybuffer-base64",
+      "code": "const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);\nlet arr2 = new Uint8Array(16);\nlet { read, written } = arr2.setFromBase64(\"SGVsbG8gV29ybGQ=\");\nreturn read == 16 && written == 11 &&\n       arr1.every((element, index) => element === arr2[index]);"
+    },
+    "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.toHex()": {
+      "spec": "https://github.com/tc39/proposal-arraybuffer-base64",
+      "code": "const arr = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);\nreturn arr.toHex() === \"48656c6c6f20576f726c64\";"
+    },
+    "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.fromHex()": {
+      "spec": "https://github.com/tc39/proposal-arraybuffer-base64",
+      "code": "const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);\nconst arr2 = Uint8Array.fromHex(\"48656c6c6f20576f726c64\");\nreturn arr1.length === arr2.length &&\n       arr1.every((element, index) => element === arr2[index]);"
+    },
+    "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.setFromHex()": {
+      "spec": "https://github.com/tc39/proposal-arraybuffer-base64",
+      "code": "const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);\nlet arr2 = new Uint8Array(16);\nlet { read, written } = arr2.setFromHex(\"48656c6c6f20576f726c64\");\nreturn read == 22 && written == 11 &&\n       arr1.every((element, index) => element === arr2[index]);"
+    },
     "Stage 2.7›ShadowRealm": {
       "spec": "https://github.com/tc39/proposal-shadowrealm",
       "code": "return typeof ShadowRealm === \"function\"\n  && [\"evaluate\", \"importValue\"].every(function(key){\n    return key in ShadowRealm.prototype;\n  });"
