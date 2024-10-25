@@ -3776,6 +3776,7 @@
       "code": "return Iterator.prototype[Symbol.toStringTag] === 'Iterator';"
     },
     "features›Promise.try": {
+      "spec": "https://github.com/tc39/proposal-promise-try",
       "code": "var called = false;\nvar argsMatch = false;\nvar p = Promise.try(function () { called = true; })\nvar p2 = Promise.try(function () {\n  'use strict';\n  argsMatch = this === undefined && arguments.length === 2 && args[0] === p && args[1] === 2;\n}, [p, 2]);\n\nreturn p instanceof Promise && called && argsMatch;"
     }
   },
