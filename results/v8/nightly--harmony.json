@@ -1,5 +1,5 @@
 {
-  "_version": "24.0.0-nightly20241107f38cefa04b--harmony",
+  "_version": "24.0.0-nightly202411086af5c4e2b4--harmony",
   "_engine": "v8 12.9.202.28-node.11",
   "ESNEXT": {
     "_successful": 2,
@@ -76,15 +76,15 @@
     "features›Promise.try": false
   },
   "ES2024": {
-    "_successful": 11,
+    "_successful": 12,
     "_count": 12,
-    "_percent": 0.9166666666666666,
+    "_percent": 1,
     "features›RegExp `v` flag›set notations": true,
     "features›RegExp `v` flag›properties of Strings": true,
     "features›RegExp `v` flag›constructor supports it": true,
     "features›RegExp `v` flag›shows up in flags": true,
     "features›RegExp `v` flag›Unicode 15.1": true,
-    "features›RegExp `v` flag›Unicode 16.0": false,
+    "features›RegExp `v` flag›Unicode 16.0": true,
     "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.transfer()": true,
     "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.transferToFixedLength()": true,
     "features›ArrayBuffer.prototype.transfer›ArrayBuffer.prototype.detached": true,
@@ -226,9 +226,9 @@
     "misc›Well-formed JSON.stringify": true
   },
   "ES2018": {
-    "_successful": 20,
+    "_successful": 21,
     "_count": 21,
-    "_percent": 0.9523809523809523,
+    "_percent": 1,
     "features›object rest/spread properties›object rest properties": true,
     "features›object rest/spread properties›object spread properties": true,
     "features›Promise.prototype.finally›basic support": true,
@@ -245,7 +245,7 @@
     "features›RegExp Unicode Property Escapes›Unicode 14": true,
     "features›RegExp Unicode Property Escapes›Unicode 15": true,
     "features›RegExp Unicode Property Escapes›Unicode 15.1": true,
-    "features›RegExp Unicode Property Escapes›Unicode 16.0": "Invalid regular expression: /\\p{Script=Todhri}/u: Invalid property name",
+    "features›RegExp Unicode Property Escapes›Unicode 16.0": true,
     "features›Asynchronous Iterators›async generators": true,
     "features›Asynchronous Iterators›for-await-of loops": true,
     "misc›Proxy \"ownKeys\" handler, duplicate keys for non-extensible targets": true,
