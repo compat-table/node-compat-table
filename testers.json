@@ -2800,7 +2800,7 @@
     },
     "features›exponentiation (**) operator›early syntax error for unary negation without parens": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-exp-operator",
-      "code": "if (2 ** 3 !== 8) { return false; }\ntry {\n  function (\"-5 ** 2\")();\n} catch (e) {\n  return true;\n}"
+      "code": "if (2 ** 3 !== 8) { return false; }\ntry {\n  Function (\"-5 ** 2\")();\n} catch (e) {\n  return true;\n}"
     },
     "features›Array.prototype.includes›Array.prototype.includes": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-array.prototype.includes",
@@ -2828,7 +2828,7 @@
     },
     "misc›strict fn w/ non-strict non-simple params is error": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-functiondeclarationinstantiation",
-      "code": "function foo(...a) {}\ntry {\n  function (\"function bar(...a) {'use strict';}\")();\n} catch (e) {\nreturn true;\n}"
+      "code": "function foo(...a) {}\ntry {\n  Function (\"function bar(...a) {'use strict';}\")();\n} catch (e) {\nreturn true;\n}"
     },
     "misc›nested rest destructuring, declarations": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-destructuring-assignment",
@@ -2890,7 +2890,7 @@
     },
     "features›async functions›no line break between async and function": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a() {}\ntry { function (\"async\\n function a() {await 0}\")(); } catch (e) { return true; }"
+      "code": "async function a() {}\ntry { Function (\"async\\n function a() {await 0}\")(); } catch (e) { return true; }"
     },
     "features›async functions›no \"prototype\" property": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
@@ -2906,7 +2906,7 @@
     },
     "features›async functions›must await a value": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a() { await Promise.resolve(); }\ntry { function (\"(async function a() { await; }())\")(); } catch (e) { return true; }"
+      "code": "async function a() { await Promise.resolve(); }\ntry { Function (\"(async function a() { await; }())\")(); } catch (e) { return true; }"
     },
     "features›async functions›can await non-Promise values": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
@@ -2914,7 +2914,7 @@
     },
     "features›async functions›cannot await in parameters": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a() { await Promise.resolve(); }\ntry { function (\"(async function a(b = await Promise.resolve()) {}())\")(); } catch (e) { return true; }"
+      "code": "async function a() { await Promise.resolve(); }\ntry { Function (\"(async function a(b = await Promise.resolve()) {}())\")(); } catch (e) { return true; }"
     },
     "features›async functions›async methods, object literals": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
@@ -3319,11 +3319,11 @@
     },
     "features›globalThis›\"globalThis\" global property is global object": {
       "spec": "https://github.com/tc39/proposal-global",
-      "code": "var actualGlobal = function ('return this')();\nactualGlobal.__system_global_test__ = 42;\nreturn typeof globalThis === 'object' && globalThis && globalThis === actualGlobal && !globalThis.lacksGlobalThis && globalThis.__system_global_test__ === 42;"
+      "code": "var actualGlobal = Function ('return this')();\nactualGlobal.__system_global_test__ = 42;\nreturn typeof globalThis === 'object' && globalThis && globalThis === actualGlobal && !globalThis.lacksGlobalThis && globalThis.__system_global_test__ === 42;"
     },
     "features›globalThis›\"globalThis\" global property has correct property descriptor": {
       "spec": "https://github.com/tc39/proposal-global",
-      "code": "var actualGlobal = function ('return this')();\nif (typeof globalThis !== 'object') { return false; }\nif (!('globalThis' in actualGlobal)) { return false; }\nif (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }\n\nvar descriptor = Object.getOwnPropertyDescriptor(actualGlobal, 'globalThis');\nreturn descriptor.value === actualGlobal && !descriptor.enumerable && descriptor.configurable && descriptor.writable;"
+      "code": "var actualGlobal = Function ('return this')();\nif (typeof globalThis !== 'object') { return false; }\nif (!('globalThis' in actualGlobal)) { return false; }\nif (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }\n\nvar descriptor = Object.getOwnPropertyDescriptor(actualGlobal, 'globalThis');\nreturn descriptor.value === actualGlobal && !descriptor.enumerable && descriptor.configurable && descriptor.writable;"
     },
     "features›optional chaining operator (?.)›optional property access": {
       "spec": "https://github.com/tc39/proposal-optional-chaining",

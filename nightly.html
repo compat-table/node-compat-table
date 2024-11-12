@@ -21447,7 +21447,7 @@ return a === 3;</div>}
               <div class="fn">function(){
                 <div class="code">if (2 ** 3 !== 8) { return false; }
 try {
-  function (&quot;-5 ** 2&quot;)();
+  Function (&quot;-5 ** 2&quot;)();
 } catch (e) {
   return true;
 }</div>}
@@ -21463,7 +21463,7 @@ try {
             <div class="fn">function(){
               <div class="code">if (2 ** 3 !== 8) { return false; }
 try {
-  function (&quot;-5 ** 2&quot;)();
+  Function (&quot;-5 ** 2&quot;)();
 } catch (e) {
   return true;
 }</div>}
@@ -21746,7 +21746,7 @@ return iter['throw']().value === 'bar';</div>}
               <div class="fn">function(){
                 <div class="code">function foo(...a) {}
 try {
-  function (&quot;function bar(...a) {'use strict';}&quot;)();
+  Function (&quot;function bar(...a) {'use strict';}&quot;)();
 } catch (e) {
 return true;
 }</div>}
@@ -21762,7 +21762,7 @@ return true;
             <div class="fn">function(){
               <div class="code">function foo(...a) {}
 try {
-  function (&quot;function bar(...a) {'use strict';}&quot;)();
+  Function (&quot;function bar(...a) {'use strict';}&quot;)();
 } catch (e) {
 return true;
 }</div>}
@@ -22271,7 +22271,7 @@ p.catch (function (result) {
             <div class="info">?
               <div class="fn">function(){
                 <div class="code">async function a() {}
-try { function (&quot;async\n function a() {await 0}&quot;)(); } catch (e) { return true; }</div>}
+try { Function (&quot;async\n function a() {await 0}&quot;)(); } catch (e) { return true; }</div>}
               </div>
             </div>
           </td>
@@ -22283,7 +22283,7 @@ try { function (&quot;async\n function a() {await 0}&quot;)(); } catch (e) { ret
           <td colspan="2">
             <div class="fn">function(){
               <div class="code">async function a() {}
-try { function (&quot;async\n function a() {await 0}&quot;)(); } catch (e) { return true; }</div>}
+try { Function (&quot;async\n function a() {await 0}&quot;)(); } catch (e) { return true; }</div>}
             </div>
           </td>
         </tr>
@@ -22387,7 +22387,7 @@ return !a.hasOwnProperty(&quot;prototype&quot;);</div>}
             <div class="info">?
               <div class="fn">function(){
                 <div class="code">async function a() { await Promise.resolve(); }
-try { function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { return true; }</div>}
+try { Function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { return true; }</div>}
               </div>
             </div>
           </td>
@@ -22399,7 +22399,7 @@ try { function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { 
           <td colspan="2">
             <div class="fn">function(){
               <div class="code">async function a() { await Promise.resolve(); }
-try { function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { return true; }</div>}
+try { Function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { return true; }</div>}
             </div>
           </td>
         </tr>
@@ -22441,7 +22441,7 @@ try { function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { 
             <div class="info">?
               <div class="fn">function(){
                 <div class="code">async function a() { await Promise.resolve(); }
-try { function (&quot;(async function a(b = await Promise.resolve()) {}())&quot;)(); } catch (e) { return true; }</div>}
+try { Function (&quot;(async function a(b = await Promise.resolve()) {}())&quot;)(); } catch (e) { return true; }</div>}
               </div>
             </div>
           </td>
@@ -22453,7 +22453,7 @@ try { function (&quot;(async function a(b = await Promise.resolve()) {}())&quot;
           <td colspan="2">
             <div class="fn">function(){
               <div class="code">async function a() { await Promise.resolve(); }
-try { function (&quot;(async function a(b = await Promise.resolve()) {}())&quot;)(); } catch (e) { return true; }</div>}
+try { Function (&quot;(async function a(b = await Promise.resolve()) {}())&quot;)(); } catch (e) { return true; }</div>}
             </div>
           </td>
         </tr>
@@ -25649,7 +25649,7 @@ return view.getBigUint64(0) === 1n;</div>}
             <div class="hash" id="ES2020-features-globalThis--globalThis--global-property-is-global-object"></div><a class="anchor" href="#ES2020-features-globalThis--globalThis--global-property-is-global-object">§</a><a href="https://github.com/tc39/proposal-global">&quot;globalThis&quot; global property is global object</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">var actualGlobal = function ('return this')();
+                <div class="code">var actualGlobal = Function ('return this')();
 actualGlobal.__system_global_test__ = 42;
 return typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThis === actualGlobal &amp;&amp; !globalThis.lacksGlobalThis &amp;&amp; globalThis.__system_global_test__ === 42;</div>}
               </div>
@@ -25662,7 +25662,7 @@ return typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThi
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">var actualGlobal = function ('return this')();
+              <div class="code">var actualGlobal = Function ('return this')();
 actualGlobal.__system_global_test__ = 42;
 return typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThis === actualGlobal &amp;&amp; !globalThis.lacksGlobalThis &amp;&amp; globalThis.__system_global_test__ === 42;</div>}
             </div>
@@ -25673,7 +25673,7 @@ return typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThi
             <div class="hash" id="ES2020-features-globalThis--globalThis--global-property-has-correct-property-descriptor"></div><a class="anchor" href="#ES2020-features-globalThis--globalThis--global-property-has-correct-property-descriptor">§</a><a href="https://github.com/tc39/proposal-global">&quot;globalThis&quot; global property has correct property descriptor</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">var actualGlobal = function ('return this')();
+                <div class="code">var actualGlobal = Function ('return this')();
 if (typeof globalThis !== 'object') { return false; }
 if (!('globalThis' in actualGlobal)) { return false; }
 if (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }
@@ -25690,7 +25690,7 @@ return descriptor.value === actualGlobal &amp;&amp; !descriptor.enumerable &amp;
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">var actualGlobal = function ('return this')();
+              <div class="code">var actualGlobal = Function ('return this')();
 if (typeof globalThis !== 'object') { return false; }
 if (!('globalThis' in actualGlobal)) { return false; }
 if (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }
