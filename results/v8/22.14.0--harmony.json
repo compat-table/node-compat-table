@@ -1,6 +1,6 @@
 {
-  "_version": "24.0.0-nightly20250212b07ff551db--harmony",
-  "_engine": "v8 13.0.245.25-node.11",
+  "_version": "22.14.0--harmony",
+  "_engine": "v8 12.4.254.21-node.22",
   "ESNEXT": {
     "_successful": 2,
     "_count": 36,
@@ -73,7 +73,7 @@
     "features›Iterator Helpers›Iterator.prototype.take": true,
     "features›Iterator Helpers›Iterator.prototype.toArray": true,
     "features›Iterator Helpers›Iterator.prototype[@@toStringTag]": true,
-    "features›Promise.try": false
+    "features›Promise.try": "Promise.try is not a function"
   },
   "ES2024": {
     "_successful": 12,
