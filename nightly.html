@@ -1551,6 +1551,34 @@ return original === getStrings() &amp;&amp; original === newed;</div>}
           </td>
         </tr>
         <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ES2015-syntax-template-literals-arbitrary-escape-sequences-in-tagged-template-literals"></div><a class="anchor" href="#ES2015-syntax-template-literals-arbitrary-escape-sequences-in-tagged-template-literals">§</a><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-template-literals">arbitrary escape sequences in tagged template literals</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">function strings(array) {
+  return array;
+}
+var str = strings`\1\xz\uz\u{110000}\u{z}`;
+return str.length === 1 &amp;&amp; str[0] === undefined &amp;&amp; str.raw.length === 1 &amp;&amp; str.raw[0]===&quot;\\1\\xz\\uz\\u{110000}\\u{z}&quot;</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">function strings(array) {
+  return array;
+}
+var str = strings`\1\xz\uz\u{110000}\u{z}`;
+return str.length === 1 &amp;&amp; str[0] === undefined &amp;&amp; str.raw.length === 1 &amp;&amp; str.raw[0]===&quot;\\1\\xz\\uz\\u{110000}\\u{z}&quot;</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
           <td class="feature sub" colspan="3">
             <h3>
               <div class="hash" id="ES2015-syntax-RegExp--y--and--u--flags"></div><a href="#ES2015-syntax-RegExp--y--and--u--flags">RegExp &quot;y&quot; and &quot;u&quot; flags</a>
@@ -18214,6 +18242,7 @@ var get = [];
 var p = new Proxy({ exec: function() { return null; } }, { get: function(o, k) { get.push(k); return o[k]; }});
 RegExp.prototype[Symbol.match].call(p);
 p.global = true;
+p.unicode = true;
 RegExp.prototype[Symbol.match].call(p);
 var str = get + '';
 return str === &quot;global,exec,global,unicode,exec&quot; || str === 'flags,exec,flags,exec';</div>}
@@ -18232,6 +18261,7 @@ var get = [];
 var p = new Proxy({ exec: function() { return null; } }, { get: function(o, k) { get.push(k); return o[k]; }});
 RegExp.prototype[Symbol.match].call(p);
 p.global = true;
+p.unicode = true;
 RegExp.prototype[Symbol.match].call(p);
 var str = get + '';
 return str === &quot;global,exec,global,unicode,exec&quot; || str === 'flags,exec,flags,exec';</div>}
@@ -21445,9 +21475,11 @@ return a === 3;</div>}
             <div class="hash" id="ES2016-features-exponentiation------operator-early-syntax-error-for-unary-negation-without-parens"></div><a class="anchor" href="#ES2016-features-exponentiation------operator-early-syntax-error-for-unary-negation-without-parens">§</a><a href="http://www.ecma-international.org/ecma-262/7.0/index.html#sec-exp-operator">early syntax error for unary negation without parens</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">if (2 ** 3 !== 8) { return false; }
+                <div class="code">if (2 ** 3 !== 8) {
+  return false;
+}
 try {
-  Function (&quot;-5 ** 2&quot;)();
+  Function(&quot;-5 ** 2&quot;)();
 } catch (e) {
   return true;
 }</div>}
@@ -21461,9 +21493,11 @@ try {
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">if (2 ** 3 !== 8) { return false; }
+              <div class="code">if (2 ** 3 !== 8) {
+  return false;
+}
 try {
-  Function (&quot;-5 ** 2&quot;)();
+  Function(&quot;-5 ** 2&quot;)();
 } catch (e) {
   return true;
 }</div>}
@@ -21745,11 +21779,11 @@ return iter['throw']().value === 'bar';</div>}
             <div class="info">?
               <div class="fn">function(){
                 <div class="code">function foo(...a) {}
-try {
-  Function (&quot;function bar(...a) {'use strict';}&quot;)();
-} catch (e) {
-return true;
-}</div>}
+  try {
+    Function(&quot;function bar(...a) {'use strict';}&quot;)();
+  } catch (e) {
+    return true;
+  }</div>}
               </div>
             </div>
           </td>
@@ -21761,11 +21795,11 @@ return true;
           <td colspan="2">
             <div class="fn">function(){
               <div class="code">function foo(...a) {}
-try {
-  Function (&quot;function bar(...a) {'use strict';}&quot;)();
-} catch (e) {
-return true;
-}</div>}
+  try {
+    Function(&quot;function bar(...a) {'use strict';}&quot;)();
+  } catch (e) {
+    return true;
+  }</div>}
             </div>
           </td>
         </tr>
@@ -22271,7 +22305,11 @@ p.catch (function (result) {
             <div class="info">?
               <div class="fn">function(){
                 <div class="code">async function a() {}
-try { Function (&quot;async\n function a() {await 0}&quot;)(); } catch (e) { return true; }</div>}
+  try {
+    Function(&quot;async\n function a() {await 0}&quot;)();
+  } catch (e) {
+    return true;
+  }</div>}
               </div>
             </div>
           </td>
@@ -22283,7 +22321,11 @@ try { Function (&quot;async\n function a() {await 0}&quot;)(); } catch (e) { ret
           <td colspan="2">
             <div class="fn">function(){
               <div class="code">async function a() {}
-try { Function (&quot;async\n function a() {await 0}&quot;)(); } catch (e) { return true; }</div>}
+  try {
+    Function(&quot;async\n function a() {await 0}&quot;)();
+  } catch (e) {
+    return true;
+  }</div>}
             </div>
           </td>
         </tr>
@@ -22386,8 +22428,14 @@ return !a.hasOwnProperty(&quot;prototype&quot;);</div>}
             <div class="hash" id="ES2017-features-async-functions-must-await-a-value"></div><a class="anchor" href="#ES2017-features-async-functions-must-await-a-value">§</a><a href="https://tc39.github.io/ecma262/#sec-async-function-definitions">must await a value</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">async function a() { await Promise.resolve(); }
-try { Function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { return true; }</div>}
+                <div class="code">async function a() {
+  await Promise.resolve();
+}
+try {
+  Function(&quot;(async function a() { await; }())&quot;)();
+} catch (e) {
+  return true;
+}</div>}
               </div>
             </div>
           </td>
@@ -22398,8 +22446,14 @@ try { Function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { 
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">async function a() { await Promise.resolve(); }
-try { Function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { return true; }</div>}
+              <div class="code">async function a() {
+  await Promise.resolve();
+}
+try {
+  Function(&quot;(async function a() { await; }())&quot;)();
+} catch (e) {
+  return true;
+}</div>}
             </div>
           </td>
         </tr>
@@ -22440,8 +22494,14 @@ try { Function (&quot;(async function a() { await; }())&quot;)(); } catch (e) { 
             <div class="hash" id="ES2017-features-async-functions-cannot-await-in-parameters"></div><a class="anchor" href="#ES2017-features-async-functions-cannot-await-in-parameters">§</a><a href="https://tc39.github.io/ecma262/#sec-async-function-definitions">cannot await in parameters</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">async function a() { await Promise.resolve(); }
-try { Function (&quot;(async function a(b = await Promise.resolve()) {}())&quot;)(); } catch (e) { return true; }</div>}
+                <div class="code">async function a() {
+  await Promise.resolve();
+}
+try {
+  Function(&quot;(async function a(b = await Promise.resolve()) {}())&quot;)();
+} catch (e) {
+  return true;
+}</div>}
               </div>
             </div>
           </td>
@@ -22452,8 +22512,14 @@ try { Function (&quot;(async function a(b = await Promise.resolve()) {}())&quot;
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">async function a() { await Promise.resolve(); }
-try { Function (&quot;(async function a(b = await Promise.resolve()) {}())&quot;)(); } catch (e) { return true; }</div>}
+              <div class="code">async function a() {
+  await Promise.resolve();
+}
+try {
+  Function(&quot;(async function a(b = await Promise.resolve()) {}())&quot;)();
+} catch (e) {
+  return true;
+}</div>}
             </div>
           </td>
         </tr>
@@ -25027,7 +25093,7 @@ return it.throw().value;</div>}
             <div class="hash" id="ES2019-misc-Function-prototype-toString-revision-functions-created-with-the-Function-constructor"></div><a class="anchor" href="#ES2019-misc-Function-prototype-toString-revision-functions-created-with-the-Function-constructor">§</a><a href="https://github.com/tc39/Function-prototype-toString-revision">functions created with the Function constructor</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">var fn = function ('a', ' /\x2A a \x2A/ b, c /\x2A b \x2A/ //', '/\x2A c \x2A/ ; /\x2A d \x2A/ //');
+                <div class="code">var fn = Function('a', ' /\x2A a \x2A/ b, c /\x2A b \x2A/ //', '/\x2A c \x2A/ ; /\x2A d \x2A/ //');
 var str = 'function anonymous(a, /\x2A a \x2A/ b, c /\x2A b \x2A/ //\n) {\n/\x2A c \x2A/ ; /\x2A d \x2A/ //\n}';
 return fn + '' === str;</div>}
               </div>
@@ -25040,7 +25106,7 @@ return fn + '' === str;</div>}
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">var fn = function ('a', ' /\x2A a \x2A/ b, c /\x2A b \x2A/ //', '/\x2A c \x2A/ ; /\x2A d \x2A/ //');
+              <div class="code">var fn = Function('a', ' /\x2A a \x2A/ b, c /\x2A b \x2A/ //', '/\x2A c \x2A/ ; /\x2A d \x2A/ //');
 var str = 'function anonymous(a, /\x2A a \x2A/ b, c /\x2A b \x2A/ //\n) {\n/\x2A c \x2A/ ; /\x2A d \x2A/ //\n}';
 return fn + '' === str;</div>}
             </div>
@@ -25649,7 +25715,7 @@ return view.getBigUint64(0) === 1n;</div>}
             <div class="hash" id="ES2020-features-globalThis--globalThis--global-property-is-global-object"></div><a class="anchor" href="#ES2020-features-globalThis--globalThis--global-property-is-global-object">§</a><a href="https://github.com/tc39/proposal-global">&quot;globalThis&quot; global property is global object</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">var actualGlobal = Function ('return this')();
+                <div class="code">var actualGlobal = Function('return this')();
 actualGlobal.__system_global_test__ = 42;
 return typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThis === actualGlobal &amp;&amp; !globalThis.lacksGlobalThis &amp;&amp; globalThis.__system_global_test__ === 42;</div>}
               </div>
@@ -25662,7 +25728,7 @@ return typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThi
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">var actualGlobal = Function ('return this')();
+              <div class="code">var actualGlobal = Function('return this')();
 actualGlobal.__system_global_test__ = 42;
 return typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThis === actualGlobal &amp;&amp; !globalThis.lacksGlobalThis &amp;&amp; globalThis.__system_global_test__ === 42;</div>}
             </div>
@@ -25673,7 +25739,7 @@ return typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThi
             <div class="hash" id="ES2020-features-globalThis--globalThis--global-property-has-correct-property-descriptor"></div><a class="anchor" href="#ES2020-features-globalThis--globalThis--global-property-has-correct-property-descriptor">§</a><a href="https://github.com/tc39/proposal-global">&quot;globalThis&quot; global property has correct property descriptor</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">var actualGlobal = Function ('return this')();
+                <div class="code">var actualGlobal = Function('return this')();
 if (typeof globalThis !== 'object') { return false; }
 if (!('globalThis' in actualGlobal)) { return false; }
 if (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }
@@ -25690,7 +25756,7 @@ return descriptor.value === actualGlobal &amp;&amp; !descriptor.enumerable &amp;
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">var actualGlobal = Function ('return this')();
+              <div class="code">var actualGlobal = Function('return this')();
 if (typeof globalThis !== 'object') { return false; }
 if (!('globalThis' in actualGlobal)) { return false; }
 if (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }
@@ -28226,15 +28292,27 @@ return map instanceof Map &amp;&amp; map.get(even)[0] === 2 &amp;&amp; map.get(o
             <div class="hash" id="ES2025-features--Promise-try"></div><a class="anchor" href="#ES2025-features--Promise-try">§</a><a href="https://github.com/tc39/proposal-promise-try">Promise.try</a>
             <div class="info">?
               <div class="fn">function(){
-                <div class="code">var called = false;
+                <div class="code">if (!('try' in Promise)) {
+  return false;
+}
+var called = false;
 var argsMatch = false;
 var p = Promise.try(function () { called = true; })
 var p2 = Promise.try(function () {
   'use strict';
-  argsMatch = this === undefined &amp;&amp; arguments.length === 2 &amp;&amp; args[0] === p &amp;&amp; args[1] === 2;
-}, [p, 2]);
+  argsMatch = this === undefined &amp;&amp; arguments.length === 2 &amp;&amp; arguments[0] === p &amp;&amp; arguments[1] === 2;
+}, p, 2);
 
-return p instanceof Promise &amp;&amp; called &amp;&amp; argsMatch;</div>}
+if (!(p instanceof Promise) || !(p2 instanceof Promise)) {
+  return false;
+}
+
+p2.then(function () {
+  if (!called || !argsMatch) {
+    return;
+  }
+  asyncTestPassed();
+});</div>}
               </div>
             </div>
           </td>
@@ -28245,15 +28323,53 @@ return p instanceof Promise &amp;&amp; called &amp;&amp; argsMatch;</div>}
           <td></td>
           <td colspan="2">
             <div class="fn">function(){
-              <div class="code">var called = false;
+              <div class="code">if (!('try' in Promise)) {
+  return false;
+}
+var called = false;
 var argsMatch = false;
 var p = Promise.try(function () { called = true; })
 var p2 = Promise.try(function () {
   'use strict';
-  argsMatch = this === undefined &amp;&amp; arguments.length === 2 &amp;&amp; args[0] === p &amp;&amp; args[1] === 2;
-}, [p, 2]);
+  argsMatch = this === undefined &amp;&amp; arguments.length === 2 &amp;&amp; arguments[0] === p &amp;&amp; arguments[1] === 2;
+}, p, 2);
 
-return p instanceof Promise &amp;&amp; called &amp;&amp; argsMatch;</div>}
+if (!(p instanceof Promise) || !(p2 instanceof Promise)) {
+  return false;
+}
+
+p2.then(function () {
+  if (!called || !argsMatch) {
+    return;
+  }
+  asyncTestPassed();
+});</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ES2025-features--RegExp-Escaping"></div><a class="anchor" href="#ES2025-features--RegExp-Escaping">§</a><a href="https://github.com/tc39/proposal-regex-escaping">RegExp Escaping</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">return RegExp.escape(&quot;The Quick Brown Fox&quot;) === &quot;\\x54he\\x20Quick\\x20Brown\\x20Fox&quot; &amp;&amp;
+  RegExp.escape(&quot;(*.*)&quot;) === &quot;\\(\\*\\.\\*\\)&quot; &amp;&amp;
+  RegExp.escape(&quot;｡^･ｪ･^｡&quot;) === &quot;｡\\^･ｪ･\\^｡&quot; &amp;&amp;
+  RegExp.escape(&quot;\\d \\D (?:)&quot;) === &quot;\\\\d\\x20\\\\D\\x20\\(\\?\\x3a\\)&quot;;</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">return RegExp.escape(&quot;The Quick Brown Fox&quot;) === &quot;\\x54he\\x20Quick\\x20Brown\\x20Fox&quot; &amp;&amp;
+  RegExp.escape(&quot;(*.*)&quot;) === &quot;\\(\\*\\.\\*\\)&quot; &amp;&amp;
+  RegExp.escape(&quot;｡^･ｪ･^｡&quot;) === &quot;｡\\^･ｪ･\\^｡&quot; &amp;&amp;
+  RegExp.escape(&quot;\\d \\D (?:)&quot;) === &quot;\\\\d\\x20\\\\D\\x20\\(\\?\\x3a\\)&quot;;</div>}
             </div>
           </td>
         </tr>
@@ -28995,39 +29111,6 @@ return true;</div>}
   if (!(('$' + i) in RegExp)) return false;
 }
 return true;</div>}
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="feature sub" colspan="3">
-            <h3>
-              <div class="hash" id="ESNEXT-Stage-3-"></div><a href="#ESNEXT-Stage-3-"></a>
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td class="feature subsub">
-            <div class="hash" id="ESNEXT-Stage-3--RegExp-Escaping"></div><a class="anchor" href="#ESNEXT-Stage-3--RegExp-Escaping">§</a><a href="https://github.com/tc39/proposal-regex-escaping">RegExp Escaping</a>
-            <div class="info">?
-              <div class="fn">function(){
-                <div class="code">return RegExp.escape(&quot;The Quick Brown Fox&quot;) === &quot;The\\ Quick\\ Brown\\ Fox&quot; &amp;&amp;
-  RegExp.escape(&quot;(*.*)&quot;) === &quot;\\(\\*\\.\\*\\)&quot; &amp;&amp;
-  RegExp.escape(&quot;｡^･ｪ･^｡&quot;) === &quot;｡\\^･ｪ･\\^｡&quot; &amp;&amp;
-  RegExp.escape(&quot;\\d \\D (?:)&quot;) === &quot;\\\\d \\\\D \\(\\?\\:\\)&quot;;</div>}
-              </div>
-            </div>
-          </td>
-          <td class="result"></td>
-          <td class="result"></td>
-        </tr>
-        <tr class="codeExample">
-          <td></td>
-          <td colspan="2">
-            <div class="fn">function(){
-              <div class="code">return RegExp.escape(&quot;The Quick Brown Fox&quot;) === &quot;The\\ Quick\\ Brown\\ Fox&quot; &amp;&amp;
-  RegExp.escape(&quot;(*.*)&quot;) === &quot;\\(\\*\\.\\*\\)&quot; &amp;&amp;
-  RegExp.escape(&quot;｡^･ｪ･^｡&quot;) === &quot;｡\\^･ｪ･\\^｡&quot; &amp;&amp;
-  RegExp.escape(&quot;\\d \\D (?:)&quot;) === &quot;\\\\d \\\\D \\(\\?\\:\\)&quot;;</div>}
             </div>
           </td>
         </tr>

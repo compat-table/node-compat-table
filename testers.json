@@ -220,6 +220,10 @@
       "spec": "http://www.ecma-international.org/ecma-262/6.0/#sec-template-literals",
       "code": "function strings(array) {\n  return array;\n}\nfunction getStrings() {\n  return strings`foo`;\n}\nvar original = getStrings();\nvar newed = new getStrings();\nreturn original === getStrings() && original === newed;"
     },
+    "syntax›template literals›arbitrary escape sequences in tagged template literals": {
+      "spec": "http://www.ecma-international.org/ecma-262/6.0/#sec-template-literals",
+      "code": "function strings(array) {\n  return array;\n}\nvar str = strings`\\1\\xz\\uz\\u{110000}\\u{z}`;\nreturn str.length === 1 && str[0] === undefined && str.raw.length === 1 && str.raw[0]===\"\\\\1\\\\xz\\\\uz\\\\u{110000}\\\\u{z}\""
+    },
     "syntax›RegExp \"y\" and \"u\" flags›\"y\" flag": {
       "spec": "http://www.ecma-international.org/ecma-262/6.0/#sec-get-regexp.prototype.sticky",
       "code": "var re = new RegExp('\\\\w', 'y');\nre.exec('xy');\nreturn (re.exec('xy')[0] === 'y');"
@@ -2382,7 +2386,7 @@
     },
     "misc›Proxy, internal 'get' calls›RegExp.prototype[Symbol.match]": {
       "spec": "http://www.ecma-international.org/ecma-262/6.0/#sec-proxy-object-internal-methods-and-internal-slots",
-      "code": "// RegExp.prototype[Symbol.match] -> Get -> [[Get]]\nvar get = [];\nvar p = new Proxy({ exec: function() { return null; } }, { get: function(o, k) { get.push(k); return o[k]; }});\nRegExp.prototype[Symbol.match].call(p);\np.global = true;\nRegExp.prototype[Symbol.match].call(p);\nvar str = get + '';\nreturn str === \"global,exec,global,unicode,exec\" || str === 'flags,exec,flags,exec';"
+      "code": "// RegExp.prototype[Symbol.match] -> Get -> [[Get]]\nvar get = [];\nvar p = new Proxy({ exec: function() { return null; } }, { get: function(o, k) { get.push(k); return o[k]; }});\nRegExp.prototype[Symbol.match].call(p);\np.global = true;\np.unicode = true;\nRegExp.prototype[Symbol.match].call(p);\nvar str = get + '';\nreturn str === \"global,exec,global,unicode,exec\" || str === 'flags,exec,flags,exec';"
     },
     "misc›Proxy, internal 'get' calls›RegExp.prototype[Symbol.replace]": {
       "spec": "http://www.ecma-international.org/ecma-262/6.0/#sec-proxy-object-internal-methods-and-internal-slots",
@@ -2800,7 +2804,7 @@
     },
     "features›exponentiation (**) operator›early syntax error for unary negation without parens": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-exp-operator",
-      "code": "if (2 ** 3 !== 8) { return false; }\ntry {\n  Function (\"-5 ** 2\")();\n} catch (e) {\n  return true;\n}"
+      "code": "if (2 ** 3 !== 8) {\n  return false;\n}\ntry {\n  Function(\"-5 ** 2\")();\n} catch (e) {\n  return true;\n}"
     },
     "features›Array.prototype.includes›Array.prototype.includes": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-array.prototype.includes",
@@ -2828,7 +2832,7 @@
     },
     "misc›strict fn w/ non-strict non-simple params is error": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-functiondeclarationinstantiation",
-      "code": "function foo(...a) {}\ntry {\n  Function (\"function bar(...a) {'use strict';}\")();\n} catch (e) {\nreturn true;\n}"
+      "code": "function foo(...a) {}\n  try {\n    Function(\"function bar(...a) {'use strict';}\")();\n  } catch (e) {\n    return true;\n  }"
     },
     "misc›nested rest destructuring, declarations": {
       "spec": "http://www.ecma-international.org/ecma-262/7.0/index.html#sec-destructuring-assignment",
@@ -2890,7 +2894,7 @@
     },
     "features›async functions›no line break between async and function": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a() {}\ntry { Function (\"async\\n function a() {await 0}\")(); } catch (e) { return true; }"
+      "code": "async function a() {}\n  try {\n    Function(\"async\\n function a() {await 0}\")();\n  } catch (e) {\n    return true;\n  }"
     },
     "features›async functions›no \"prototype\" property": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
@@ -2906,7 +2910,7 @@
     },
     "features›async functions›must await a value": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a() { await Promise.resolve(); }\ntry { Function (\"(async function a() { await; }())\")(); } catch (e) { return true; }"
+      "code": "async function a() {\n  await Promise.resolve();\n}\ntry {\n  Function(\"(async function a() { await; }())\")();\n} catch (e) {\n  return true;\n}"
     },
     "features›async functions›can await non-Promise values": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
@@ -2914,7 +2918,7 @@
     },
     "features›async functions›cannot await in parameters": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
-      "code": "async function a() { await Promise.resolve(); }\ntry { Function (\"(async function a(b = await Promise.resolve()) {}())\")(); } catch (e) { return true; }"
+      "code": "async function a() {\n  await Promise.resolve();\n}\ntry {\n  Function(\"(async function a(b = await Promise.resolve()) {}())\")();\n} catch (e) {\n  return true;\n}"
     },
     "features›async functions›async methods, object literals": {
       "spec": "https://tc39.github.io/ecma262/#sec-async-function-definitions",
@@ -3233,7 +3237,7 @@
     },
     "misc›Function.prototype.toString revision›functions created with the Function constructor": {
       "spec": "https://github.com/tc39/Function-prototype-toString-revision",
-      "code": "var fn = function ('a', ' /\\x2A a \\x2A/ b, c /\\x2A b \\x2A/ //', '/\\x2A c \\x2A/ ; /\\x2A d \\x2A/ //');\nvar str = 'function anonymous(a, /\\x2A a \\x2A/ b, c /\\x2A b \\x2A/ //\\n) {\\n/\\x2A c \\x2A/ ; /\\x2A d \\x2A/ //\\n}';\nreturn fn + '' === str;"
+      "code": "var fn = Function('a', ' /\\x2A a \\x2A/ b, c /\\x2A b \\x2A/ //', '/\\x2A c \\x2A/ ; /\\x2A d \\x2A/ //');\nvar str = 'function anonymous(a, /\\x2A a \\x2A/ b, c /\\x2A b \\x2A/ //\\n) {\\n/\\x2A c \\x2A/ ; /\\x2A d \\x2A/ //\\n}';\nreturn fn + '' === str;"
     },
     "misc›Function.prototype.toString revision›arrows": {
       "spec": "https://github.com/tc39/Function-prototype-toString-revision",
@@ -3319,11 +3323,11 @@
     },
     "features›globalThis›\"globalThis\" global property is global object": {
       "spec": "https://github.com/tc39/proposal-global",
-      "code": "var actualGlobal = Function ('return this')();\nactualGlobal.__system_global_test__ = 42;\nreturn typeof globalThis === 'object' && globalThis && globalThis === actualGlobal && !globalThis.lacksGlobalThis && globalThis.__system_global_test__ === 42;"
+      "code": "var actualGlobal = Function('return this')();\nactualGlobal.__system_global_test__ = 42;\nreturn typeof globalThis === 'object' && globalThis && globalThis === actualGlobal && !globalThis.lacksGlobalThis && globalThis.__system_global_test__ === 42;"
     },
     "features›globalThis›\"globalThis\" global property has correct property descriptor": {
       "spec": "https://github.com/tc39/proposal-global",
-      "code": "var actualGlobal = Function ('return this')();\nif (typeof globalThis !== 'object') { return false; }\nif (!('globalThis' in actualGlobal)) { return false; }\nif (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }\n\nvar descriptor = Object.getOwnPropertyDescriptor(actualGlobal, 'globalThis');\nreturn descriptor.value === actualGlobal && !descriptor.enumerable && descriptor.configurable && descriptor.writable;"
+      "code": "var actualGlobal = Function('return this')();\nif (typeof globalThis !== 'object') { return false; }\nif (!('globalThis' in actualGlobal)) { return false; }\nif (Object.prototype.propertyIsEnumerable.call(actualGlobal, 'globalThis')) { return false; }\n\nvar descriptor = Object.getOwnPropertyDescriptor(actualGlobal, 'globalThis');\nreturn descriptor.value === actualGlobal && !descriptor.enumerable && descriptor.configurable && descriptor.writable;"
     },
     "features›optional chaining operator (?.)›optional property access": {
       "spec": "https://github.com/tc39/proposal-optional-chaining",
@@ -3777,7 +3781,11 @@
     },
     "features›Promise.try": {
       "spec": "https://github.com/tc39/proposal-promise-try",
-      "code": "var called = false;\nvar argsMatch = false;\nvar p = Promise.try(function () { called = true; })\nvar p2 = Promise.try(function () {\n  'use strict';\n  argsMatch = this === undefined && arguments.length === 2 && args[0] === p && args[1] === 2;\n}, [p, 2]);\n\nreturn p instanceof Promise && called && argsMatch;"
+      "code": "if (!('try' in Promise)) {\n  return false;\n}\nvar called = false;\nvar argsMatch = false;\nvar p = Promise.try(function () { called = true; })\nvar p2 = Promise.try(function () {\n  'use strict';\n  argsMatch = this === undefined && arguments.length === 2 && arguments[0] === p && arguments[1] === 2;\n}, p, 2);\n\nif (!(p instanceof Promise) || !(p2 instanceof Promise)) {\n  return false;\n}\n\np2.then(function () {\n  if (!called || !argsMatch) {\n    return;\n  }\n  asyncTestPassed();\n});"
+    },
+    "features›RegExp Escaping": {
+      "spec": "https://github.com/tc39/proposal-regex-escaping",
+      "code": "return RegExp.escape(\"The Quick Brown Fox\") === \"\\\\x54he\\\\x20Quick\\\\x20Brown\\\\x20Fox\" &&\n  RegExp.escape(\"(*.*)\") === \"\\\\(\\\\*\\\\.\\\\*\\\\)\" &&\n  RegExp.escape(\"｡^･ｪ･^｡\") === \"｡\\\\^･ｪ･\\\\^｡\" &&\n  RegExp.escape(\"\\\\d \\\\D (?:)\") === \"\\\\\\\\d\\\\x20\\\\\\\\D\\\\x20\\\\(\\\\?\\\\x3a\\\\)\";"
     }
   },
   "ESNEXT": {
@@ -3792,10 +3800,6 @@
     "Stage 3›Legacy RegExp features in JavaScript›RegExp.$1-$9": {
       "spec": "https://github.com/tc39/proposal-regexp-legacy-features",
       "code": "for (var i = 1; i < 10; i++) {\n  if (!(('$' + i) in RegExp)) return false;\n}\nreturn true;"
-    },
-    "Stage 3›RegExp Escaping": {
-      "spec": "https://github.com/tc39/proposal-regex-escaping",
-      "code": "return RegExp.escape(\"The Quick Brown Fox\") === \"The\\\\ Quick\\\\ Brown\\\\ Fox\" &&\n  RegExp.escape(\"(*.*)\") === \"\\\\(\\\\*\\\\.\\\\*\\\\)\" &&\n  RegExp.escape(\"｡^･ｪ･^｡\") === \"｡\\\\^･ｪ･\\\\^｡\" &&\n  RegExp.escape(\"\\\\d \\\\D (?:)\") === \"\\\\\\\\d \\\\\\\\D \\\\(\\\\?\\\\:\\\\)\";"
     },
     "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.toBase64()": {
       "spec": "https://github.com/tc39/proposal-arraybuffer-base64",

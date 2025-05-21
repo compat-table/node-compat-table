@@ -3,12 +3,11 @@
   "_engine": "v8 11.3.244.8-node.6",
   "ESNEXT": {
     "_successful": 2,
-    "_count": 36,
-    "_percent": 0.05555555555555555,
+    "_count": 35,
+    "_percent": 0.05714285714285714,
     "Stage 3›Class and Property Decorators›class decorators": "Invalid or unexpected token",
     "Stage 3›Legacy RegExp features in JavaScript›RegExp \"lastMatch\"": true,
     "Stage 3›Legacy RegExp features in JavaScript›RegExp.$1-$9": true,
-    "Stage 3›RegExp Escaping": "RegExp.escape is not a function",
     "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.toBase64()": "arr.toBase64 is not a function",
     "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.fromBase64()": "Uint8Array.fromBase64 is not a function",
     "Stage 3›Uint8Array to/from base64 and hex›Uint8Array.setFromBase64()": "arr2.setFromBase64 is not a function",
@@ -44,7 +43,7 @@
   },
   "ES2025": {
     "_successful": 0,
-    "_count": 28,
+    "_count": 29,
     "_percent": 0,
     "features›Duplicate named capturing groups": "Invalid regular expression: /(?<year>[0-9]{4})-[0-9]{2}|[0-9]{2}-(?<year>[0-9]{4})/: Duplicate capture group name",
     "features›Set methods›Set.prototype.intersection()": "(intermediate value).intersection is not a function",
@@ -73,7 +72,8 @@
     "features›Iterator Helpers›Iterator.prototype.take": "[1,2,3].values(...).take is not a function",
     "features›Iterator Helpers›Iterator.prototype.toArray": "[1,2,3].values(...).toArray is not a function",
     "features›Iterator Helpers›Iterator.prototype[@@toStringTag]": "Iterator is not defined",
-    "features›Promise.try": "Promise.try is not a function"
+    "features›Promise.try": false,
+    "features›RegExp Escaping": "RegExp.escape is not a function"
   },
   "ES2024": {
     "_successful": 7,
@@ -197,9 +197,9 @@
     "features›nullish coalescing operator (??)": true
   },
   "ES2019": {
-    "_successful": 23,
+    "_successful": 24,
     "_count": 24,
-    "_percent": 0.9583333333333334,
+    "_percent": 1,
     "features›Symbol.prototype.description›basic": true,
     "features›Symbol.prototype.description›empty description": true,
     "features›Symbol.prototype.description›undefined description": true,
@@ -214,7 +214,7 @@
     "misc›optional catch binding›basic": true,
     "misc›optional catch binding›await": true,
     "misc›optional catch binding›yield": true,
-    "misc›Function.prototype.toString revision›functions created with the Function constructor": "Unexpected string",
+    "misc›Function.prototype.toString revision›functions created with the Function constructor": true,
     "misc›Function.prototype.toString revision›arrows": true,
     "misc›Function.prototype.toString revision›[native code]": true,
     "misc›Function.prototype.toString revision›class expression with implicit constructor": true,
@@ -340,9 +340,9 @@
     "misc›Proxy internal calls, Array.prototype.includes": true
   },
   "ES2015": {
-    "_successful": 692,
-    "_count": 697,
-    "_percent": 0.9928263988522238,
+    "_successful": 694,
+    "_count": 698,
+    "_percent": 0.994269340974212,
     "optimisation›proper tail calls (tail call optimisation)›direct recursion": "Maximum call stack size exceeded",
     "optimisation›proper tail calls (tail call optimisation)›mutual recursion": "Maximum call stack size exceeded",
     "syntax›default function parameters›basic functionality": true,
@@ -398,6 +398,7 @@
     "syntax›template literals›line break normalisation": true,
     "syntax›template literals›TemplateStrings call site caching": true,
     "syntax›template literals›TemplateStrings permanent caching": true,
+    "syntax›template literals›arbitrary escape sequences in tagged template literals": true,
     "syntax›RegExp \"y\" and \"u\" flags›\"y\" flag": true,
     "syntax›RegExp \"y\" and \"u\" flags›\"y\" flag, lastIndex": true,
     "syntax›RegExp \"y\" and \"u\" flags›\"u\" flag": true,
@@ -938,7 +939,7 @@
     "misc›Proxy, internal 'get' calls›RegExp.prototype.flags": false,
     "misc›Proxy, internal 'get' calls›RegExp.prototype.test": true,
     "misc›Proxy, internal 'get' calls›RegExp.prototype.toString": true,
-    "misc›Proxy, internal 'get' calls›RegExp.prototype[Symbol.match]": false,
+    "misc›Proxy, internal 'get' calls›RegExp.prototype[Symbol.match]": true,
     "misc›Proxy, internal 'get' calls›RegExp.prototype[Symbol.replace]": true,
     "misc›Proxy, internal 'get' calls›RegExp.prototype[Symbol.search]": true,
     "misc›Proxy, internal 'get' calls›RegExp.prototype[Symbol.split]": true,
