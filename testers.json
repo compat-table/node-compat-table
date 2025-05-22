@@ -3825,6 +3825,34 @@
       "spec": "https://github.com/tc39/proposal-arraybuffer-base64",
       "code": "const arr1 = new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]);\nlet arr2 = new Uint8Array(16);\nlet { read, written } = arr2.setFromHex(\"48656c6c6f20576f726c64\");\nreturn read == 22 && written == 11 &&\n       arr1.every((element, index) => element === arr2[index]);"
     },
+    "Stage 3›Explicit Resource Management›using": {
+      "spec": "https://github.com/tc39/proposal-explicit-resource-management",
+      "code": "var resource = {\n  disposed: false,\n  [Symbol.dispose]() {\n    this.disposed = true;\n  }\n};\n{\n  using _ = resource;\n}\nreturn resource.disposed"
+    },
+    "Stage 3›Explicit Resource Management›for (using ... of": {
+      "spec": "https://github.com/tc39/proposal-explicit-resource-management",
+      "code": "var resource1 = {\n  disposed: false,\n  [Symbol.dispose]() {\n    this.disposed = true;\n  }\n};\nvar resource2 = {\n  disposed: false,\n  [Symbol.dispose]() {\n    this.disposed = true;\n  }\n};\n{\n  for (using _ of [resource1, resource2]);\n}\nreturn resource1.disposed && resource2.disposed;"
+    },
+    "Stage 3›Explicit Resource Management›await using": {
+      "spec": "https://github.com/tc39/proposal-explicit-resource-management",
+      "code": "(async function () {\n  var resource = {\n    disposed: false,\n    async [Symbol.asyncDispose]() {\n      this.disposed = true;\n    }\n  };\n  {\n    await using _ = resource;\n  }\n  return resource.disposed && asyncTestPassed();\n}());"
+    },
+    "Stage 3›Explicit Resource Management›for (await using ... of": {
+      "spec": "https://github.com/tc39/proposal-explicit-resource-management",
+      "code": "var resource1 = {\n  disposed: false,\n  async [Symbol.asyncDispose]() {\n    this.disposed = true;\n  }\n};\nvar resource2 = {\n  disposed: false,\n  async [Symbol.asyncDispose]() {\n    this.disposed = true;\n  }\n};\n(async function () {\n  for (await using _ of [resource1, resource2]);\n  return resource1.disposed && resource2.disposed && asyncTestPassed();\n}());"
+    },
+    "Stage 3›Explicit Resource Management›SuppressedError": {
+      "spec": "https://github.com/tc39/proposal-explicit-resource-management",
+      "code": "var err1 = new Error();\nvar err2 = new Error();\nvar err3 = new Error();\ntry {\n  using _1 = { [Symbol.dispose]() { throw err1 } },\n        _2 = { [Symbol.dispose]() { throw err2 } };\n  throw err3;\n} catch (e) {\n  return (\n    e instanceof SuppressedError\n    && e.error === err1\n    && e.suppressed instanceof SuppressedError\n    && e.suppressed.error === err2\n    && e.suppressed.suppressed === err3\n  );\n}"
+    },
+    "Stage 3›Explicit Resource Management›DisposableStack": {
+      "spec": "https://github.com/tc39/proposal-explicit-resource-management",
+      "code": "var stack1 = new DisposableStack();\nvar resource1 = { disposed: false };\nvar resource2 = { disposed: false };\nvar resource3 = { disposed: false, [Symbol.dispose]() { this.disposed = true } };\nvar adopted = stack1.adopt(resource1, function (r) { r.disposed = true });\nvar deferred = stack1.defer(function (r) { resource2.disposed = true });\nvar stack2 = stack1.move();\nvar used = stack2.use(resource3);\nstack2.dispose();\nreturn (\n  resource1.disposed && adopted === resource1\n  && resource2.disposed && deferred === undefined\n  && resource3.disposed && used === resource3\n);"
+    },
+    "Stage 3›Explicit Resource Management›AsyncDisposableStack": {
+      "spec": "https://github.com/tc39/proposal-explicit-resource-management",
+      "code": "var stack1 = new AsyncDisposableStack();\nvar resource1 = { disposed: false };\nvar resource2 = { disposed: false };\nvar resource3 = { disposed: false, async [Symbol.asyncDispose]() { this.disposed = true } };\nvar adopted = stack1.adopt(resource1, async function (r) { r.disposed = true });\nvar deferred = stack1.defer(async function (r) { resource2.disposed = true });\nvar stack2 = stack1.move();\nvar used = stack2.use(resource3);\nstack2.disposeAsync().then(function () {\n  resource1.disposed && adopted === resource1 &&\n  resource2.disposed && deferred === undefined &&\n  resource3.disposed && used === resource3 &&\n  asyncTestPassed();\n});"
+    },
     "Stage 2.7›ShadowRealm": {
       "spec": "https://github.com/tc39/proposal-shadowrealm",
       "code": "return typeof ShadowRealm === \"function\"\n  && [\"evaluate\", \"importValue\"].every(function(key){\n    return key in ShadowRealm.prototype;\n  });"

@@ -29273,6 +29273,335 @@ return read == 22 &amp;&amp; written == 11 &amp;&amp;
             </div>
           </td>
         </tr>
+        <tr>
+          <td class="feature sub" colspan="3">
+            <h3>
+              <div class="hash" id="ESNEXT-Stage-3-Explicit-Resource-Management"></div><a href="#ESNEXT-Stage-3-Explicit-Resource-Management">Explicit Resource Management</a>
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Explicit-Resource-Management-using"></div><a class="anchor" href="#ESNEXT-Stage-3-Explicit-Resource-Management-using">§</a><a href="https://github.com/tc39/proposal-explicit-resource-management">using</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">var resource = {
+  disposed: false,
+  [Symbol.dispose]() {
+    this.disposed = true;
+  }
+};
+{
+  using _ = resource;
+}
+return resource.disposed</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">var resource = {
+  disposed: false,
+  [Symbol.dispose]() {
+    this.disposed = true;
+  }
+};
+{
+  using _ = resource;
+}
+return resource.disposed</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Explicit-Resource-Management-for--using-----of"></div><a class="anchor" href="#ESNEXT-Stage-3-Explicit-Resource-Management-for--using-----of">§</a><a href="https://github.com/tc39/proposal-explicit-resource-management">for (using ... of</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">var resource1 = {
+  disposed: false,
+  [Symbol.dispose]() {
+    this.disposed = true;
+  }
+};
+var resource2 = {
+  disposed: false,
+  [Symbol.dispose]() {
+    this.disposed = true;
+  }
+};
+{
+  for (using _ of [resource1, resource2]);
+}
+return resource1.disposed &amp;&amp; resource2.disposed;</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">var resource1 = {
+  disposed: false,
+  [Symbol.dispose]() {
+    this.disposed = true;
+  }
+};
+var resource2 = {
+  disposed: false,
+  [Symbol.dispose]() {
+    this.disposed = true;
+  }
+};
+{
+  for (using _ of [resource1, resource2]);
+}
+return resource1.disposed &amp;&amp; resource2.disposed;</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Explicit-Resource-Management-await-using"></div><a class="anchor" href="#ESNEXT-Stage-3-Explicit-Resource-Management-await-using">§</a><a href="https://github.com/tc39/proposal-explicit-resource-management">await using</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">(async function () {
+  var resource = {
+    disposed: false,
+    async [Symbol.asyncDispose]() {
+      this.disposed = true;
+    }
+  };
+  {
+    await using _ = resource;
+  }
+  return resource.disposed &amp;&amp; asyncTestPassed();
+}());</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">(async function () {
+  var resource = {
+    disposed: false,
+    async [Symbol.asyncDispose]() {
+      this.disposed = true;
+    }
+  };
+  {
+    await using _ = resource;
+  }
+  return resource.disposed &amp;&amp; asyncTestPassed();
+}());</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Explicit-Resource-Management-for--await-using-----of"></div><a class="anchor" href="#ESNEXT-Stage-3-Explicit-Resource-Management-for--await-using-----of">§</a><a href="https://github.com/tc39/proposal-explicit-resource-management">for (await using ... of</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">var resource1 = {
+  disposed: false,
+  async [Symbol.asyncDispose]() {
+    this.disposed = true;
+  }
+};
+var resource2 = {
+  disposed: false,
+  async [Symbol.asyncDispose]() {
+    this.disposed = true;
+  }
+};
+(async function () {
+  for (await using _ of [resource1, resource2]);
+  return resource1.disposed &amp;&amp; resource2.disposed &amp;&amp; asyncTestPassed();
+}());</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">var resource1 = {
+  disposed: false,
+  async [Symbol.asyncDispose]() {
+    this.disposed = true;
+  }
+};
+var resource2 = {
+  disposed: false,
+  async [Symbol.asyncDispose]() {
+    this.disposed = true;
+  }
+};
+(async function () {
+  for (await using _ of [resource1, resource2]);
+  return resource1.disposed &amp;&amp; resource2.disposed &amp;&amp; asyncTestPassed();
+}());</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Explicit-Resource-Management-SuppressedError"></div><a class="anchor" href="#ESNEXT-Stage-3-Explicit-Resource-Management-SuppressedError">§</a><a href="https://github.com/tc39/proposal-explicit-resource-management">SuppressedError</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">var err1 = new Error();
+var err2 = new Error();
+var err3 = new Error();
+try {
+  using _1 = { [Symbol.dispose]() { throw err1 } },
+        _2 = { [Symbol.dispose]() { throw err2 } };
+  throw err3;
+} catch (e) {
+  return (
+    e instanceof SuppressedError
+    &amp;&amp; e.error === err1
+    &amp;&amp; e.suppressed instanceof SuppressedError
+    &amp;&amp; e.suppressed.error === err2
+    &amp;&amp; e.suppressed.suppressed === err3
+  );
+}</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">var err1 = new Error();
+var err2 = new Error();
+var err3 = new Error();
+try {
+  using _1 = { [Symbol.dispose]() { throw err1 } },
+        _2 = { [Symbol.dispose]() { throw err2 } };
+  throw err3;
+} catch (e) {
+  return (
+    e instanceof SuppressedError
+    &amp;&amp; e.error === err1
+    &amp;&amp; e.suppressed instanceof SuppressedError
+    &amp;&amp; e.suppressed.error === err2
+    &amp;&amp; e.suppressed.suppressed === err3
+  );
+}</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Explicit-Resource-Management-DisposableStack"></div><a class="anchor" href="#ESNEXT-Stage-3-Explicit-Resource-Management-DisposableStack">§</a><a href="https://github.com/tc39/proposal-explicit-resource-management">DisposableStack</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">var stack1 = new DisposableStack();
+var resource1 = { disposed: false };
+var resource2 = { disposed: false };
+var resource3 = { disposed: false, [Symbol.dispose]() { this.disposed = true } };
+var adopted = stack1.adopt(resource1, function (r) { r.disposed = true });
+var deferred = stack1.defer(function (r) { resource2.disposed = true });
+var stack2 = stack1.move();
+var used = stack2.use(resource3);
+stack2.dispose();
+return (
+  resource1.disposed &amp;&amp; adopted === resource1
+  &amp;&amp; resource2.disposed &amp;&amp; deferred === undefined
+  &amp;&amp; resource3.disposed &amp;&amp; used === resource3
+);</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">var stack1 = new DisposableStack();
+var resource1 = { disposed: false };
+var resource2 = { disposed: false };
+var resource3 = { disposed: false, [Symbol.dispose]() { this.disposed = true } };
+var adopted = stack1.adopt(resource1, function (r) { r.disposed = true });
+var deferred = stack1.defer(function (r) { resource2.disposed = true });
+var stack2 = stack1.move();
+var used = stack2.use(resource3);
+stack2.dispose();
+return (
+  resource1.disposed &amp;&amp; adopted === resource1
+  &amp;&amp; resource2.disposed &amp;&amp; deferred === undefined
+  &amp;&amp; resource3.disposed &amp;&amp; used === resource3
+);</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-3-Explicit-Resource-Management-AsyncDisposableStack"></div><a class="anchor" href="#ESNEXT-Stage-3-Explicit-Resource-Management-AsyncDisposableStack">§</a><a href="https://github.com/tc39/proposal-explicit-resource-management">AsyncDisposableStack</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">var stack1 = new AsyncDisposableStack();
+var resource1 = { disposed: false };
+var resource2 = { disposed: false };
+var resource3 = { disposed: false, async [Symbol.asyncDispose]() { this.disposed = true } };
+var adopted = stack1.adopt(resource1, async function (r) { r.disposed = true });
+var deferred = stack1.defer(async function (r) { resource2.disposed = true });
+var stack2 = stack1.move();
+var used = stack2.use(resource3);
+stack2.disposeAsync().then(function () {
+  resource1.disposed &amp;&amp; adopted === resource1 &amp;&amp;
+  resource2.disposed &amp;&amp; deferred === undefined &amp;&amp;
+  resource3.disposed &amp;&amp; used === resource3 &amp;&amp;
+  asyncTestPassed();
+});</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">var stack1 = new AsyncDisposableStack();
+var resource1 = { disposed: false };
+var resource2 = { disposed: false };
+var resource3 = { disposed: false, async [Symbol.asyncDispose]() { this.disposed = true } };
+var adopted = stack1.adopt(resource1, async function (r) { r.disposed = true });
+var deferred = stack1.defer(async function (r) { resource2.disposed = true });
+var stack2 = stack1.move();
+var used = stack2.use(resource3);
+stack2.disposeAsync().then(function () {
+  resource1.disposed &amp;&amp; adopted === resource1 &amp;&amp;
+  resource2.disposed &amp;&amp; deferred === undefined &amp;&amp;
+  resource3.disposed &amp;&amp; used === resource3 &amp;&amp;
+  asyncTestPassed();
+});</div>}
+            </div>
+          </td>
+        </tr>
       </table>
       <table class="results">
         <caption>
