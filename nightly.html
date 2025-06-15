@@ -29642,6 +29642,67 @@ stack2.disposeAsync().then(function () {
             </div>
           </td>
         </tr>
+        <tr>
+          <td class="feature sub" colspan="3">
+            <h3>
+              <div class="hash" id="ESNEXT-Stage-2-7-Map-prototype-upsert"></div><a href="#ESNEXT-Stage-2-7-Map-prototype-upsert">Map.prototype.upsert</a>
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-2-7-Map-prototype-upsert-Map-prototype-upsert"></div><a class="anchor" href="#ESNEXT-Stage-2-7-Map-prototype-upsert-Map-prototype-upsert">§</a><a href="https://github.com/tc39/proposal-upsert">Map.prototype.upsert</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const map = new Map([['a', 1]]);
+if (map.upsert('a', it =&gt; 2, () =&gt; 3) !== 2) return false;
+if (map.upsert('b', it =&gt; 2, () =&gt; 3) !== 3) return false;
+return Array.from(map).join() === 'a,2,b,3';</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const map = new Map([['a', 1]]);
+if (map.upsert('a', it =&gt; 2, () =&gt; 3) !== 2) return false;
+if (map.upsert('b', it =&gt; 2, () =&gt; 3) !== 3) return false;
+return Array.from(map).join() === 'a,2,b,3';</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ESNEXT-Stage-2-7-Map-prototype-upsert-WeakMap-prototype-upsert"></div><a class="anchor" href="#ESNEXT-Stage-2-7-Map-prototype-upsert-WeakMap-prototype-upsert">§</a><a href="https://github.com/tc39/proposal-upsert">WeakMap.prototype.upsert</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">const a = {}, b = {};
+const map = new WeakMap([[a, 1]]);
+if (map.upsert(a, it =&gt; 2, () =&gt; 3) !== 2) return false;
+if (map.upsert(b, it =&gt; 2, () =&gt; 3) !== 3) return false;
+return map.get(a) === 2 &amp;&amp; map.get(b) === 3;</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">const a = {}, b = {};
+const map = new WeakMap([[a, 1]]);
+if (map.upsert(a, it =&gt; 2, () =&gt; 3) !== 2) return false;
+if (map.upsert(b, it =&gt; 2, () =&gt; 3) !== 3) return false;
+return map.get(a) === 2 &amp;&amp; map.get(b) === 3;</div>}
+            </div>
+          </td>
+        </tr>
       </table>
       <table class="results">
         <caption>
@@ -29846,67 +29907,6 @@ try {
 } catch (e) {
   return e === 21;
 }</div>}
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="feature sub" colspan="3">
-            <h3>
-              <div class="hash" id="ESNEXT-Stage-2-Map-prototype-upsert"></div><a href="#ESNEXT-Stage-2-Map-prototype-upsert">Map.prototype.upsert</a>
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td class="feature subsub">
-            <div class="hash" id="ESNEXT-Stage-2-Map-prototype-upsert-Map-prototype-upsert"></div><a class="anchor" href="#ESNEXT-Stage-2-Map-prototype-upsert-Map-prototype-upsert">§</a><a href="https://github.com/tc39/proposal-upsert">Map.prototype.upsert</a>
-            <div class="info">?
-              <div class="fn">function(){
-                <div class="code">const map = new Map([['a', 1]]);
-if (map.upsert('a', it =&gt; 2, () =&gt; 3) !== 2) return false;
-if (map.upsert('b', it =&gt; 2, () =&gt; 3) !== 3) return false;
-return Array.from(map).join() === 'a,2,b,3';</div>}
-              </div>
-            </div>
-          </td>
-          <td class="result"></td>
-          <td class="result"></td>
-        </tr>
-        <tr class="codeExample">
-          <td></td>
-          <td colspan="2">
-            <div class="fn">function(){
-              <div class="code">const map = new Map([['a', 1]]);
-if (map.upsert('a', it =&gt; 2, () =&gt; 3) !== 2) return false;
-if (map.upsert('b', it =&gt; 2, () =&gt; 3) !== 3) return false;
-return Array.from(map).join() === 'a,2,b,3';</div>}
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="feature subsub">
-            <div class="hash" id="ESNEXT-Stage-2-Map-prototype-upsert-WeakMap-prototype-upsert"></div><a class="anchor" href="#ESNEXT-Stage-2-Map-prototype-upsert-WeakMap-prototype-upsert">§</a><a href="https://github.com/tc39/proposal-upsert">WeakMap.prototype.upsert</a>
-            <div class="info">?
-              <div class="fn">function(){
-                <div class="code">const a = {}, b = {};
-const map = new WeakMap([[a, 1]]);
-if (map.upsert(a, it =&gt; 2, () =&gt; 3) !== 2) return false;
-if (map.upsert(b, it =&gt; 2, () =&gt; 3) !== 3) return false;
-return map.get(a) === 2 &amp;&amp; map.get(b) === 3;</div>}
-              </div>
-            </div>
-          </td>
-          <td class="result"></td>
-          <td class="result"></td>
-        </tr>
-        <tr class="codeExample">
-          <td></td>
-          <td colspan="2">
-            <div class="fn">function(){
-              <div class="code">const a = {}, b = {};
-const map = new WeakMap([[a, 1]]);
-if (map.upsert(a, it =&gt; 2, () =&gt; 3) !== 2) return false;
-if (map.upsert(b, it =&gt; 2, () =&gt; 3) !== 3) return false;
-return map.get(a) === 2 &amp;&amp; map.get(b) === 3;</div>}
             </div>
           </td>
         </tr>

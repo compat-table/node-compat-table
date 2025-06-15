@@ -3857,6 +3857,14 @@
       "spec": "https://github.com/tc39/proposal-shadowrealm",
       "code": "return typeof ShadowRealm === \"function\"\n  && [\"evaluate\", \"importValue\"].every(function(key){\n    return key in ShadowRealm.prototype;\n  });"
     },
+    "Stage 2.7›Map.prototype.upsert›Map.prototype.upsert": {
+      "spec": "https://github.com/tc39/proposal-upsert",
+      "code": "const map = new Map([['a', 1]]);\nif (map.upsert('a', it => 2, () => 3) !== 2) return false;\nif (map.upsert('b', it => 2, () => 3) !== 3) return false;\nreturn Array.from(map).join() === 'a,2,b,3';"
+    },
+    "Stage 2.7›Map.prototype.upsert›WeakMap.prototype.upsert": {
+      "spec": "https://github.com/tc39/proposal-upsert",
+      "code": "const a = {}, b = {};\nconst map = new WeakMap([[a, 1]]);\nif (map.upsert(a, it => 2, () => 3) !== 2) return false;\nif (map.upsert(b, it => 2, () => 3) !== 3) return false;\nreturn map.get(a) === 2 && map.get(b) === 3;"
+    },
     "Stage 2›Generator function.sent Meta Property": {
       "spec": "https://github.com/tc39/proposal-function.sent",
       "code": "var result;\nfunction* generator() {\n  result = function.sent;\n}\nvar iter = generator();\niter.next('tromple');\nreturn result === 'tromple';"
@@ -3876,14 +3884,6 @@
     "Stage 2›throw expressions›conditionals": {
       "spec": "https://github.com/tc39/proposal-throw-expressions",
       "code": "true ? 42 : throw 21;\ntry {\n  false ? 42 : throw 21;\n} catch (e) {\n  return e === 21;\n}"
-    },
-    "Stage 2›Map.prototype.upsert›Map.prototype.upsert": {
-      "spec": "https://github.com/tc39/proposal-upsert",
-      "code": "const map = new Map([['a', 1]]);\nif (map.upsert('a', it => 2, () => 3) !== 2) return false;\nif (map.upsert('b', it => 2, () => 3) !== 3) return false;\nreturn Array.from(map).join() === 'a,2,b,3';"
-    },
-    "Stage 2›Map.prototype.upsert›WeakMap.prototype.upsert": {
-      "spec": "https://github.com/tc39/proposal-upsert",
-      "code": "const a = {}, b = {};\nconst map = new WeakMap([[a, 1]]);\nif (map.upsert(a, it => 2, () => 3) !== 2) return false;\nif (map.upsert(b, it => 2, () => 3) !== 3) return false;\nreturn map.get(a) === 2 && map.get(b) === 3;"
     },
     "Stage 2›Array.isTemplateObject": {
       "spec": "https://github.com/tc39/proposal-array-is-template-object",
