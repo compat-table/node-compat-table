@@ -24483,6 +24483,26 @@ return regexGreekSymbol.test('π');</div>}
           </td>
         </tr>
         <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ES2018-features-RegExp-Unicode-Property-Escapes-Unicode-17-0"></div><a class="anchor" href="#ES2018-features-RegExp-Unicode-Property-Escapes-Unicode-17-0">§</a><a href="https://github.com/tc39/proposal-regexp-unicode-property-escapes">Unicode 17.0</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">return /\p{Script=Sidetic}/u.test(&quot;\u{10940}&quot;) &amp;&amp; /\p{Emoji}/u.test(&quot;🫍&quot;);</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">return /\p{Script=Sidetic}/u.test(&quot;\u{10940}&quot;) &amp;&amp; /\p{Emoji}/u.test(&quot;🫍&quot;);</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
           <td class="feature sub" colspan="3">
             <h3>
               <div class="hash" id="ES2018-features-Asynchronous-Iterators"></div><a href="#ES2018-features-Asynchronous-Iterators">Asynchronous Iterators</a>
@@ -28036,6 +28056,26 @@ return flags.indexOf(&quot;unicodeSets&quot;) !== -1;</div>}
           <td colspan="2">
             <div class="fn">function(){
               <div class="code">return /^\p{RGI_Emoji}$/v.test(&quot;🇨🇶&quot;);</div>}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="feature subsub">
+            <div class="hash" id="ES2024-features-RegExp--v--flag-Unicode-17-0"></div><a class="anchor" href="#ES2024-features-RegExp--v--flag-Unicode-17-0">§</a><a href="https://github.com/tc39/proposal-regexp-v-flag">Unicode 17.0</a>
+            <div class="info">?
+              <div class="fn">function(){
+                <div class="code">return /^\p{RGI_Emoji}$/v.test(&quot;🧑‍🩰‍🏽&quot;);</div>}
+              </div>
+            </div>
+          </td>
+          <td class="result"></td>
+          <td class="result"></td>
+        </tr>
+        <tr class="codeExample">
+          <td></td>
+          <td colspan="2">
+            <div class="fn">function(){
+              <div class="code">return /^\p{RGI_Emoji}$/v.test(&quot;🧑‍🩰‍🏽&quot;);</div>}
             </div>
           </td>
         </tr>
