@@ -27559,7 +27559,8 @@ return error.hasOwnProperty('cause') &amp;&amp; error.cause === 'cause';</div>}
             <div class="info">?
               <div class="fn">function(){
                 <div class="code">var expected = ['hasIndices'];
-// Sorted alphabetically by shortname – &quot;dgimsuy&quot;.
+// Sorted alphabetically by shortname as of ES2022 – &quot;dgimsuy&quot;.
+// Any flags introduced after ES2022 will be ignored by this test.
 if ('global' in RegExp.prototype) expected.push('global');
 if ('ignoreCase' in RegExp.prototype) expected.push('ignoreCase');
 if ('multiline' in RegExp.prototype) expected.push('multiline');
@@ -27569,11 +27570,11 @@ if ('sticky' in RegExp.prototype) expected.push('sticky');
 var actual = [];
 var p = new Proxy({}, { get: function (o, k) { actual.push(k); return o[k]; }});
 Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags').get.call(p);
-if (expected.length !== actual.length) return false;
-for (var i = 0; i &lt; expected.length; i++) {
-  if (expected[i] !== actual[i]) return false;
+var i = 0;
+for (var j = 0; i &lt; expected.length &amp;&amp; j &lt; actual.length; i++, j++) {
+  if (expected[i] !== actual[j]) j++;
 }
-return true;</div>}
+return i === expected.length;</div>}
               </div>
             </div>
           </td>
@@ -27585,7 +27586,8 @@ return true;</div>}
           <td colspan="2">
             <div class="fn">function(){
               <div class="code">var expected = ['hasIndices'];
-// Sorted alphabetically by shortname – &quot;dgimsuy&quot;.
+// Sorted alphabetically by shortname as of ES2022 – &quot;dgimsuy&quot;.
+// Any flags introduced after ES2022 will be ignored by this test.
 if ('global' in RegExp.prototype) expected.push('global');
 if ('ignoreCase' in RegExp.prototype) expected.push('ignoreCase');
 if ('multiline' in RegExp.prototype) expected.push('multiline');
@@ -27595,11 +27597,11 @@ if ('sticky' in RegExp.prototype) expected.push('sticky');
 var actual = [];
 var p = new Proxy({}, { get: function (o, k) { actual.push(k); return o[k]; }});
 Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags').get.call(p);
-if (expected.length !== actual.length) return false;
-for (var i = 0; i &lt; expected.length; i++) {
-  if (expected[i] !== actual[i]) return false;
+var i = 0;
+for (var j = 0; i &lt; expected.length &amp;&amp; j &lt; actual.length; i++, j++) {
+  if (expected[i] !== actual[j]) j++;
 }
-return true;</div>}
+return i === expected.length;</div>}
             </div>
           </td>
         </tr>

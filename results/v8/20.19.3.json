@@ -116,9 +116,9 @@
     "features›Change Array by copy›TypedArray.prototype.with()": true
   },
   "ES2022": {
-    "_successful": 39,
+    "_successful": 40,
     "_count": 40,
-    "_percent": 0.975,
+    "_percent": 1,
     "features›instance class fields›public instance class fields": true,
     "features›instance class fields›private instance class fields basic support": true,
     "features›instance class fields›private instance class fields initializers": true,
@@ -158,7 +158,7 @@
     "features›Error.cause property›AggregateError has cause": true,
     "features›Error.cause property›AggregateError.prototype lacks cause": true,
     "features›RegExp Match Indices (`hasIndices` / `d` flag)›constructor supports it": true,
-    "features›RegExp Match Indices (`hasIndices` / `d` flag)›shows up in flags": false
+    "features›RegExp Match Indices (`hasIndices` / `d` flag)›shows up in flags": true
   },
   "ES2021": {
     "_successful": 15,
