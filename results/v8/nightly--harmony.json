@@ -1,6 +1,6 @@
 {
-  "_version": "26.0.0-nightly20251022a5f3cd8cb5--harmony",
-  "_engine": "v8 14.1.146.11-node.11",
+  "_version": "26.0.0-nightly20251024a201250a56--harmony",
+  "_engine": "v8 14.2.231.9-node.9",
   "ESNEXT": {
     "_successful": 15,
     "_count": 42,
