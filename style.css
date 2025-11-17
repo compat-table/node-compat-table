@@ -46,6 +46,7 @@ label[for=flagged] {
 }
 label[for=flagged],
 label[for=showInfoCode],
+div.select-version,
 #credits {
   z-index: 101;
   position: fixed;
@@ -311,4 +312,26 @@ table.results {
 }
 tr:hover > td > .anchor {
   visibility: visible;
+}
+
+select#select-version {
+  right: 600px;
+  width: 150px;
+}
+select[multiple] {
+  height: 16px;
+}
+select[multiple]:focus {
+  height: auto;
+}
+div.select-version {
+  right: 540px;
+  font-size: 12px;
+}
+button.ms-choice {
+  height: 16px;
+}
+button.ms-choice > span {
+  font-size: 14px;
+  line-height: 14px;
 }

@@ -15,6 +15,8 @@ html
 
       gtag('config', 'G-07N0XX7S5Z');
     link(rel="stylesheet", href="style.css")
+    link(rel="stylesheet" href="https://unpkg.com/multiple-select@1.7.0/dist/multiple-select.min.css")
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
 body
   if (flaggable)
     input#flagged(type='checkbox')
@@ -26,6 +28,8 @@ body
   #credits
     | Created by&nbsp;
     a(href='https://github.com/williamkapke', target="_blank") William Kapke
+  div.select-version
+    select#select-version(multiple)
 
   header.global
     a#node-compat-logo(href='./')
@@ -102,3 +106,47 @@ body
 
   each version in Object.keys(testers)
     +article(version)
+  script(src="https://unpkg.com/multiple-select@1.7.0/dist/multiple-select.min.js")
+  script.
+    const nodeVersions = [...new Set($('th.version').contents().filter((i,n) => n.nodeType===3 && n.textContent.trim()).map((i,e) => e.textContent.trim()).toArray())]
+    
+    function toggleNodeVersion(option, selected) {
+      if (option === 'all') {
+        document.querySelectorAll('th.version,td.result').forEach(el => {
+            el.style.display = '';
+        })
+        localStorage.setItem('visible-versions', JSON.stringify(nodeVersions))
+      }
+      if (option === 'none') {
+        document.querySelectorAll('th.version,td.result').forEach(el => {
+            el.style.display = 'none';
+        })
+        localStorage.setItem('visible-versions', '[]')
+      }
+      if (typeof option === 'number') {
+        document .querySelectorAll(`th.version:nth-child(${option+1}), td.result:nth-child(${option+2})`)
+          .forEach(el => {
+            el.style.display = selected ? '' : 'none';
+          })
+        let visibleVersions = JSON.parse(localStorage.getItem('visible-versions', 'null')) || nodeVersions
+        if (selected) visibleVersions.push(nodeVersions[option])
+        else visibleVersions = visibleVersions.filter(v => v!== nodeVersions[option])
+        localStorage.setItem('visible-versions', JSON.stringify([ ...new Set(visibleVersions) ]))
+      }
+    }
+    const visibleVersions = new Set(JSON.parse(localStorage.getItem('visible-versions', 'null')) || nodeVersions)
+    function initVisibleVersions() {
+      const visibleVersions = new Set(JSON.parse(localStorage.getItem('visible-versions', 'null')) || nodeVersions)
+      nodeVersions.forEach((v,i) => {
+        toggleNodeVersion(i, visibleVersions.has(v))
+      })
+    }
+    initVisibleVersions()
+    const selectNodeEl = $('select#select-version').multipleSelect({
+      placeholder: 'Node Versions',
+      data: nodeVersions.map((text, i) => ({ text, value: i, selected: visibleVersions.has(text) })),
+      onClick: (args) => toggleNodeVersion(args.value, args.selected),
+      onCheckAll: () => toggleNodeVersion('all'),
+      onUncheckAll: () => toggleNodeVersion('none'),
+    })
+
